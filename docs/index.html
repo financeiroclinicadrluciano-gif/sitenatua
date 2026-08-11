@@ -145,7 +145,7 @@ h3.titulo{font-size:clamp(1.25rem,1.08rem+.7vw,1.5rem);font-weight:600}
   background-size:88px 88px;
   -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 22%,#000 70%,transparent 100%);
   mask-image:linear-gradient(180deg,transparent 0%,#000 22%,#000 70%,transparent 100%)}
-.hero .env{padding-block:clamp(64px,10vh,128px)}
+.hero .env{padding-block:calc(80px + clamp(56px,9vh,116px)) clamp(56px,9vh,116px)}
 .hero__acoes{display:flex;flex-wrap:wrap;align-items:center;gap:16px 22px;margin-top:38px}
 .hero__link{font-size:13px;letter-spacing:.02em;color:rgba(252,251,248,.72);
   border-bottom:1px solid rgba(188,159,98,.45);padding-bottom:3px;transition:color .25s,border-color .25s}
@@ -533,7 +533,7 @@ table.comparativo{width:100%;min-width:680px;border-collapse:collapse;font-size:
   </ol>
 </aside>
 
-<main id="conteudo" style="padding-top:80px">
+<main id="conteudo">
 
 <section class="hero escuro" aria-labelledby="t-hero">
     <img class="hero__foto" data-parallax src="assets/hero-bg.webp" alt="" width="1600" height="900" fetchpriority="high" decoding="async">

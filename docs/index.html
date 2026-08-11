@@ -282,10 +282,12 @@ table.comparativo{width:100%;min-width:680px;border-collapse:collapse;font-size:
 .medico:hover{transform:translateY(-5px);box-shadow:var(--sombra-2);border-color:var(--ouro-claro)}
 .medico.mirando{outline:2px solid var(--ouro);outline-offset:3px}
 .medico__corpo{padding:30px 28px;display:flex;flex-direction:column;flex:1}
-.medico__foto{aspect-ratio:4/5;background:var(--creme);margin:0;overflow:hidden;position:relative}
+/* 2:3 em vez de 4:5: as fotos vem em coluna alta, entao um quadro mais alto
+   mostra cabeca e ombros. Em 4:5 o rosto ocupava 70% da altura do card. */
+.medico__foto{aspect-ratio:2/3;background:var(--creme);margin:0;overflow:hidden;position:relative}
 .medico__foto::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,transparent 62%,rgba(3,19,15,.38));pointer-events:none}
-.medico__foto img{width:100%;height:100%;object-fit:cover;object-position:center 20%;
+.medico__foto img{width:100%;height:100%;object-fit:cover;object-position:center 14%;
   transition:transform .8s var(--suave)}
 .medico:hover .medico__foto img{transform:scale(1.04)}
 .medico__vazio{width:100%;height:100%;display:grid;place-content:center;gap:7px;text-align:center;

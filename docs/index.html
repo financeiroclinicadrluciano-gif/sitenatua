@@ -498,6 +498,86 @@ table.comparativo{width:100%;min-width:680px;border-collapse:collapse;font-size:
   .js [data-reveal],.w{opacity:1!important;transform:none!important}
   .hero__cue{display:none}
 }
+
+/* ================= UMA DOBRA = UMA TELA (>=1080px de altura) =============
+   Medido em 1920x1080: heroi tinha 383px (sobrava tela), profissionais 2750px
+   e comparativo 2407px. As demais ja cabiam. */
+@media(min-width:1200px) and (min-height:900px){
+  .hero{min-height:100vh;display:flex;align-items:center}
+  #profissionais,#quarta-dobra{min-height:100vh;display:flex;align-items:center;
+    padding-block:clamp(48px,6vh,72px)}
+  #profissionais .env,#quarta-dobra .env{width:100%}
+  /* cards mais baixos: a foto perde altura, o texto continua inteiro */
+  #profissionais .medico__foto{aspect-ratio:4/3}
+  #profissionais .medico{padding:24px 24px 26px}
+  #profissionais .medico ul{gap:7px}
+  #profissionais .medico li{font-size:12.5px;line-height:1.5}
+  #profissionais .medico__difere{font-size:13px;line-height:1.6;margin-top:10px}
+  #profissionais .medico__casos{font-size:12.5px;line-height:1.55;margin-top:14px;padding-top:13px}
+  #profissionais .medico__rodape{padding-top:18px}
+  #profissionais .medico__preco{font-size:26px}
+
+  /* comparativo: aperta o respiro ate a tabela inteira caber numa tela */
+  #comparativo{min-height:100vh;display:flex;align-items:center;padding-block:clamp(40px,5vh,64px)}
+  #comparativo .env{width:100%}
+  #comparativo .tabela-caixa{margin-top:24px}
+  #comparativo .comparativo{font-size:13px}
+  #comparativo .comparativo th,#comparativo .comparativo td{padding:7px 14px}
+  #comparativo .comparativo thead th{padding-block:11px}
+  #comparativo .comparativo .grupo td{padding-block:5px}
+  #comparativo .comparativo .casos th,#comparativo .comparativo .casos td{font-size:11.5px;line-height:1.4}
+  #comparativo .comparativo .preco{font-size:20px}
+  #comparativo .comparativo .acao td{padding-block:11px}
+  #comparativo .sim,#comparativo .nao{width:20px;height:20px;font-size:11px}
+  #comparativo .lede{margin-top:14px}
+  #comparativo .lede + .lede{margin-top:8px}
+}
+
+@media(min-width:1200px) and (min-height:900px){
+  /* segunda passada: faltavam 334px em profissionais e 708 no comparativo */
+  #profissionais .medico__foto{aspect-ratio:16/10}
+  #profissionais .h2,#comparativo .h2,#profissionais h2,#comparativo h2{
+    font-size:clamp(1.5rem,1.1rem+1.1vw,2.1rem);margin-top:10px}
+  #profissionais .lede,#comparativo .lede{font-size:14px;line-height:1.6;margin-top:12px}
+  #profissionais .olho,#comparativo .olho{margin-bottom:10px}
+  #profissionais .grade-medicos{margin-top:26px}
+  #profissionais .medico h3{font-size:1.12rem}
+  #profissionais .medico ul{margin-top:12px}
+  #profissionais .medico li:nth-child(n+5){display:none}
+  #profissionais .medico__casos{display:none}
+
+  /* a tabela e o que importa nesta dobra: a introducao encolhe para ela caber */
+  #comparativo .lede:nth-of-type(2){display:none}
+  #comparativo .tabela-caixa{margin-top:16px}
+  #comparativo .comparativo th,#comparativo .comparativo td{padding:5px 12px}
+  #comparativo .comparativo thead th{padding-block:9px}
+  #comparativo .comparativo thead .nome{font-size:16px}
+  #comparativo .comparativo .casos th,#comparativo .comparativo .casos td{font-size:11px;line-height:1.35}
+  #comparativo .comparativo .preco{font-size:18px}
+  #comparativo .comparativo .acao td{padding-block:9px}
+  #comparativo .comparativo .acao .btn{padding:10px 12px;font-size:10.5px}
+  #comparativo .sim,#comparativo .nao{width:18px;height:18px;font-size:10px}
+  #comparativo .rolar-dica{display:none}
+}
+
+@media(min-width:1200px) and (min-height:900px){
+  /* terceira passada: cards em 1000px, foto passa a 16:9 */
+  #profissionais .medico__foto{aspect-ratio:16/9}
+  #profissionais .medico .btn{padding:12px 16px;font-size:10.5px}
+  #profissionais .medico__reserva{font-size:11.5px}
+  #escolher{min-height:100vh;display:flex;align-items:center}
+  #escolher .env{width:100%}
+  #escolher .atalho{margin-top:0}
+}
+
+@media(min-width:1200px) and (min-height:900px){
+  /* faltavam 42px: o respiro da dobra e do card cede o suficiente */
+  #profissionais{padding-block:clamp(32px,4vh,48px)}
+  #profissionais .medico{padding:20px 22px 22px}
+  #profissionais .medico__papel{margin-bottom:6px}
+  #profissionais .medico__difere{margin-top:8px}
+  #profissionais .medico__rodape{padding-top:14px}
+}
 </style>
 </head>
 <body>
@@ -663,9 +743,16 @@ table.comparativo{width:100%;min-width:680px;border-collapse:collapse;font-size:
       <!-- O criador do Plano DOC 365 conduz o destaque: a linguagem darkroom
            floresta + ouro que antes destacava a quarta porta agora destaca a
            assinatura do metodo. -->
+    </div>
+  </section>
+
+  <!-- O criador do metodo ganha a propria dobra: em 1920x1080 os tres cards
+       ja ocupam a tela inteira, e espremer quatro pessoas junto nao cabe. -->
+  <section id="quarta-dobra" class="dobra" aria-label="O criador do Plano DOC 365">
+    <div class="env">
       <div class="quarta" data-medico="luciano" data-reveal>
         <div class="quarta__foto">
-          <img src="assets/dr-luciano.jpg" alt="Dr. Luciano Alves Neves" width="800" height="1000" decoding="async">
+          <img src="assets/dr-luciano.webp" alt="Dr. Luciano Alves Neves" width="800" height="1000" decoding="async">
         </div>
         <div>
           <p class="olho" style="margin-bottom:14px">O criador do Plano DOC 365</p>
@@ -851,6 +938,13 @@ table.comparativo{width:100%;min-width:680px;border-collapse:collapse;font-size:
         </table>
       </div>
       <p class="rolar-dica">&larr; Arraste a tabela para o lado &rarr;</p>
+      </div>
+  </section>
+
+  <!-- Auxilio de decisao em dobra propria: dentro do comparativo ele ocupava
+       349px e empurrava a tabela para fora da tela. -->
+  <section id="escolher" class="dobra" style="background:var(--fundo-2)" aria-label="Como escolher em 10 segundos">
+    <div class="env">
 
       <div class="atalho">
         <h3>Como escolher em 10 segundos</h3>

@@ -504,18 +504,7 @@ table.comparativo{width:100%;min-width:680px;border-collapse:collapse;font-size:
    e comparativo 2407px. As demais ja cabiam. */
 @media(min-width:1200px) and (min-height:900px){
   .hero{min-height:100vh;display:flex;align-items:center}
-  #profissionais,#quarta-dobra{min-height:100vh;display:flex;align-items:center;
-    padding-block:clamp(48px,6vh,72px)}
-  #profissionais .env,#quarta-dobra .env{width:100%}
   /* cards mais baixos: a foto perde altura, o texto continua inteiro */
-  #profissionais .medico__foto{aspect-ratio:4/3}
-  #profissionais .medico{padding:24px 24px 26px}
-  #profissionais .medico ul{gap:7px}
-  #profissionais .medico li{font-size:12.5px;line-height:1.5}
-  #profissionais .medico__difere{font-size:13px;line-height:1.6;margin-top:10px}
-  #profissionais .medico__casos{font-size:12.5px;line-height:1.55;margin-top:14px;padding-top:13px}
-  #profissionais .medico__rodape{padding-top:18px}
-  #profissionais .medico__preco{font-size:26px}
 
   /* comparativo: aperta o respiro ate a tabela inteira caber numa tela */
   #comparativo{min-height:100vh;display:flex;align-items:center;padding-block:clamp(40px,5vh,64px)}
@@ -535,16 +524,6 @@ table.comparativo{width:100%;min-width:680px;border-collapse:collapse;font-size:
 
 @media(min-width:1200px) and (min-height:900px){
   /* segunda passada: faltavam 334px em profissionais e 708 no comparativo */
-  #profissionais .medico__foto{aspect-ratio:16/10}
-  #profissionais .h2,#comparativo .h2,#profissionais h2,#comparativo h2{
-    font-size:clamp(1.5rem,1.1rem+1.1vw,2.1rem);margin-top:10px}
-  #profissionais .lede,#comparativo .lede{font-size:14px;line-height:1.6;margin-top:12px}
-  #profissionais .olho,#comparativo .olho{margin-bottom:10px}
-  #profissionais .grade-medicos{margin-top:26px}
-  #profissionais .medico h3{font-size:1.12rem}
-  #profissionais .medico ul{margin-top:12px}
-  #profissionais .medico li:nth-child(n+5){display:none}
-  #profissionais .medico__casos{display:none}
 
   /* a tabela e o que importa nesta dobra: a introducao encolhe para ela caber */
   #comparativo .lede:nth-of-type(2){display:none}
@@ -562,9 +541,6 @@ table.comparativo{width:100%;min-width:680px;border-collapse:collapse;font-size:
 
 @media(min-width:1200px) and (min-height:900px){
   /* terceira passada: cards em 1000px, foto passa a 16:9 */
-  #profissionais .medico__foto{aspect-ratio:16/9}
-  #profissionais .medico .btn{padding:12px 16px;font-size:10.5px}
-  #profissionais .medico__reserva{font-size:11.5px}
   #escolher{min-height:100vh;display:flex;align-items:center}
   #escolher .env{width:100%}
   #escolher .atalho{margin-top:0}
@@ -572,12 +548,98 @@ table.comparativo{width:100%;min-width:680px;border-collapse:collapse;font-size:
 
 @media(min-width:1200px) and (min-height:900px){
   /* faltavam 42px: o respiro da dobra e do card cede o suficiente */
-  #profissionais{padding-block:clamp(32px,4vh,48px)}
-  #profissionais .medico{padding:20px 22px 22px}
-  #profissionais .medico__papel{margin-bottom:6px}
-  #profissionais .medico__difere{margin-top:8px}
-  #profissionais .medico__rodape{padding-top:14px}
 }
+
+/* ================= PROFISSIONAIS: CARROSSEL DEITADO =====================
+   A dobra fica alta, a tela para e a rolagem troca o profissional. Como cada
+   um ocupa a tela inteira, nada de fonte encolhida — o texto volta ao tamanho
+   normal do resto da pagina. */
+.pf__head{margin-bottom:clamp(24px,3vh,40px)}
+.pf__palco{position:relative;display:grid}
+.pf{grid-area:1/1;display:grid;gap:clamp(24px,3vw,48px);align-items:center}
+@media(min-width:900px){.pf{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr)}}
+.pf__foto{margin:0;aspect-ratio:4/5;overflow:hidden;background:var(--floresta-3);
+  box-shadow:0 24px 60px rgba(3,19,15,.4)}
+.pf__foto img{width:100%;height:100%;object-fit:cover;object-position:center 16%}
+.pf__papel{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--ouro);margin-bottom:12px}
+.pf__nome{font-size:clamp(1.7rem,1.25rem+1.6vw,2.5rem);line-height:1.1}
+.pf__crm{margin-top:8px;font-size:13px;color:rgba(252,251,248,.55)}
+.pf__difere{margin-top:16px;font-size:15.5px;line-height:1.75;color:rgba(252,251,248,.76);max-width:58ch}
+.pf__itens{margin:20px 0 0;padding:0;list-style:none;display:grid;gap:10px;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.pf__itens li{display:grid;grid-template-columns:15px minmax(0,1fr);gap:11px;
+  font-size:14px;line-height:1.62;color:rgba(252,251,248,.66)}
+.pf__itens li::before{content:"";width:5px;height:5px;margin-top:9px;border-radius:50%;background:var(--ouro)}
+.pf__casos{margin-top:18px;padding-top:16px;border-top:1px solid rgba(252,251,248,.12);
+  font-size:14px;line-height:1.68;color:rgba(252,251,248,.6);max-width:60ch}
+.pf__aviso{margin-top:16px;padding:12px 16px;background:rgba(195,161,78,.08);
+  border-left:2px solid var(--ouro);font-size:13px;line-height:1.6;color:rgba(252,251,248,.66);max-width:58ch}
+.pf__rodape{margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 32px}
+.pf__preco{font-family:'Playfair Display',serif;font-size:34px;font-weight:500;line-height:1;color:#FCFBF8}
+.pf__reserva{margin-top:7px;font-size:12.5px;color:rgba(252,251,248,.6)}
+.pf__pontos{display:flex;gap:10px;justify-content:center;margin-top:clamp(20px,3vh,36px)}
+.pf__pontos button{width:34px;height:3px;padding:0;border:0;cursor:pointer;
+  background:rgba(252,251,248,.2);transition:background .4s ease,transform .4s ease}
+.pf__pontos button[aria-current="true"]{background:var(--ouro);transform:scaleY(2)}
+.pf__pontos button:hover{background:rgba(195,161,78,.6)}
+
+/* com JS: um por vez, com a tela parada */
+html.js #profissionais{min-height:400vh}
+html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;padding-block:clamp(40px,6vh,72px)}
+html.js .pf{opacity:0;visibility:hidden;transform:translateY(18px);
+  transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1)}
+html.js .pf[data-ativo]{opacity:1;visibility:visible;transform:none}
+
+/* sem JS, ou com menos movimento: os quatro empilhados, sem tela parada */
+@media(prefers-reduced-motion:reduce){
+  html.js #profissionais{min-height:0}
+  html.js #profissionais .pf__env{position:static;min-height:0}
+  html.js .pf__palco{display:grid;gap:64px}
+  html.js .pf{grid-area:auto;opacity:1!important;visibility:visible!important;transform:none!important}
+  .pf__pontos{display:none}
+}
+@media(max-width:899px){
+  html.js #profissionais{min-height:0}
+  html.js #profissionais .pf__env{position:static;min-height:0}
+  html.js .pf__palco{gap:56px}
+  html.js .pf{grid-area:auto;opacity:1!important;visibility:visible!important;transform:none!important}
+  .pf__pontos{display:none}
+}
+
+/* ---- correcao de contraste: a dobra e clara, o slide e escuro -----------
+   As cores tinham vindo do bloco do Dr. Luciano, que ficava sobre o verde. Na
+   dobra de profissionais o fundo e creme: texto quase branco sumia. Cada slide
+   passa a ter a propria moldura escura, como no desenho original. */
+.pf{background:linear-gradient(150deg,var(--floresta-2,#0E2A1E),var(--floresta,#07160F) 70%);
+  color:#FCFBF8;padding:clamp(22px,2.4vw,40px);
+  border:1px solid rgba(195,161,78,.2);box-shadow:0 30px 80px rgba(3,19,15,.34)}
+.pf__foto{box-shadow:none;border:1px solid rgba(195,161,78,.14)}
+.pf__nome{color:#FCFBF8}
+.pf__papel{color:var(--ouro)}
+.pf__crm{color:rgba(252,251,248,.6)}
+.pf__difere{color:rgba(252,251,248,.82)}
+.pf__itens li{color:rgba(252,251,248,.72)}
+.pf__casos{color:rgba(252,251,248,.64);border-top-color:rgba(252,251,248,.14)}
+.pf__aviso{color:rgba(252,251,248,.72)}
+.pf__preco{color:#FCFBF8}
+.pf__reserva{color:rgba(252,251,248,.64)}
+.pf__pontos button{background:rgba(23,20,13,.18)}
+.pf__pontos button:hover{background:rgba(107,83,32,.5)}
+.pf__pontos button[aria-current="true"]{background:var(--ouro)}
+/* o botao dentro do slide precisa ler sobre escuro */
+.pf .btn--linha{color:rgba(252,251,248,.8);box-shadow:inset 0 0 0 1px rgba(252,251,248,.26)}
+.pf .btn--linha:hover{color:#FCFBF8;box-shadow:inset 0 0 0 1px rgba(195,161,78,.7)}
+
+/* ---- item da lista: bloco, nao grid -------------------------------------
+   Como grid de duas colunas, cada <em> dentro do texto virava uma celula e o
+   item quebrava palavra a palavra. Bloco com o ponto no ::before nao se importa
+   com quantos elementos o texto tem dentro. */
+.pf__itens li{display:block!important;position:relative;padding-left:17px;
+  grid-template-columns:none!important}
+.pf__itens li::before{position:absolute;left:0;top:.62em;margin-top:0}
+.pf__itens li em{font-style:italic}
 </style>
 </head>
 <body>
@@ -633,156 +695,96 @@ table.comparativo{width:100%;min-width:680px;border-collapse:collapse;font-size:
     </a>
   </section>
 
-<section id="profissionais" class="dobra" style="padding-top:48px" aria-labelledby="t-prof">
-    <div class="env">
-      <p class="olho" data-reveal>01 &middot; Quem vai te atender</p>
-      <h2 class="titulo" id="t-prof" data-reveal style="--d:1">Quem conduz o seu Plano DOC 365</h2>
-
-      <div class="grade-medicos">
-        <article class="medico" data-medico="gislaine" data-reveal style="--d:0">
-          <div class="medico__foto">
-            <img src="assets/dra-gislaine.webp" alt="Dra. Gislaine Szostak" width="760" height="1070" loading="lazy" decoding="async">
-          </div>
-          <div class="medico__corpo">
-            <p class="medico__papel">Naturóloga &middot; Coach Integral Sistêmica &middot; Aplicadora do Plano DOC 365</p>
-            <h3 class="titulo">Dra. Gislaine Szostak</h3>
-            <p class="medico__difere">
-              Nem todo mundo chega à Natuá por causa de um exame. Tem gente que chega porque a
-              rotina desandou: sono ruim, estresse alto, energia no chão, corpo cobrando por
-              caminhos que não aparecem no laboratório. Ela entra exatamente aí.
-            </p>
-            <ul>
-              <li>Consulta de 1h</li>
-              <li>Especialista em Medicina Tradicional Chinesa e acupuntura</li>
-              <li>Avaliação completa do histórico e da composição corporal</li>
-              <li>Leitura de rotina, hábitos, queixas e nível de estresse</li>
-              <li>Orientações integrativas e direcionamento para acupuntura quando indicado</li>
-            </ul>
-            <p class="medico__casos">
-              Costuma conduzir quem chega com a rotina desandada — sono ruim, estresse alto,
-              energia no chão — e prefere começar pela escuta, não por mais um exame.
-            </p>
-            <p class="medico__aviso">
-              Modalidade integrativa. Não é consulta médica e não substitui a avaliação médica.
-              Muitos pacientes fazem as duas coisas — não é uma ou outra.
-            </p>
-            <div class="medico__rodape">
-              <p class="medico__preco">R$ 650</p>
-              <p class="medico__reserva">Reserva de R$ 150, descontada do valor da consulta.</p>
-              <a class="btn btn--ouro" data-reserva="gislaine" href="#">Garantir horário com a Dra. Gislaine</a>
+  <!-- ============ OS QUATRO PROFISSIONAIS ============
+       Uma dobra só: a tela fica parada e a rolagem troca o profissional. Cada
+       um ocupa a tela inteira no formato deitado, então nenhum texto precisa
+       ser encolhido para caber. -->
+  <section id="profissionais" class="dobra" aria-labelledby="t-prof">
+    <div class="env pf__env">
+      <div class="pf__head">
+        <p class="olho" data-reveal>01 &middot; Quem vai te atender</p>
+        <h2 class="titulo" id="t-prof" data-reveal style="--d:1">Quem conduz o seu Plano DOC 365</h2>
+      </div>
+      <div class="pf__palco">
+        <article class="pf" data-slide="0" data-ativo>
+          <figure class="pf__foto"><img src="assets/dr-luciano.webp" alt="Dr. Luciano Alves Neves" width="900" height="1600" loading="eager" decoding="async"></figure>
+          <div class="pf__txt">
+            <p class="pf__papel">O criador do Plano DOC 365</p>
+            <h3 class="titulo pf__nome">Dr. Luciano Alves Neves</h3>
+            <p class="pf__crm">Médico CRM/PR 45049 &middot; Educador Físico CREF/PR 025507</p>
+            <p class="pf__difere">São mais de 17 anos rodando a própria clínica. É o único profissional da casa que junta os dois lados da conta: a medicina que
+            trata o metabolismo e a fisiologia de quem treina. Foi dessa combinação que nasceu
+            o DOC 365.</p>
+            <ul class="pf__itens"><li>Consulta de 1h30 — a mais longa da clínica</li><li>Obesidade, metabolismo, lipedema, hipertrofia e performance esportiva</li><li>Tratamentos hormonais masculinos</li><li>Pós em emagrecimento e metabolismo &middot; metabolômica &middot; medicina funcional integrativa &middot; Curso Internacional de Obesidade (ABRAN)</li><li>Autor de <em>Lipedema — além da estética, um olhar completo</em> e <em>Musculação para iniciantes</em></li></ul>
+            
+            <p class="pf__aviso">Costuma conduzir os casos que já passaram por várias tentativas, os quadros de
+            lipedema, pós-bariátrica e quem quer resultado com performance junto.</p>
+            <div class="pf__rodape">
+              <div><p class="pf__preco">R$ 1.200</p><p class="pf__reserva">Reserva de R$ 350, descontada do valor da consulta.</p></div>
+              <a class="btn btn--linha" data-reserva="luciano" href="#">Garantir horário com o Dr. Luciano</a>
             </div>
           </div>
         </article>
-        <article class="medico" data-medico="vivian" data-reveal style="--d:1">
-          <div class="medico__foto">
-            <img src="assets/dra-vivian.webp" alt="Dra. Vivian Gumy" width="760" height="1202" loading="lazy" decoding="async">
-          </div>
-          <div class="medico__corpo">
-            <p class="medico__papel">Ginecologista &middot; CRM/PR 28.891 &middot; Aplicadora do DOC 365</p>
-            <h3 class="titulo">Dra. Vivian Gumy</h3>
-            <p class="miudo" style="margin-top:8px">Ginecologista &middot; CRM/PR 28.891</p>
-            <p class="medico__difere">
-              Ela olha o emagrecimento pela porta que a maioria das clínicas ignora: o hormônio
+        <article class="pf" data-slide="1">
+          <figure class="pf__foto"><img src="assets/dra-vivian.webp" alt="Dra. Vivian Gumy" width="900" height="1600" loading="lazy" decoding="async"></figure>
+          <div class="pf__txt">
+            <p class="pf__papel">Ginecologista &middot; CRM/PR 28.891 &middot; Aplicadora do DOC 365</p>
+            <h3 class="titulo pf__nome">Dra. Vivian Gumy</h3>
+            <p class="pf__crm">Ginecologista &middot; CRM/PR 28.891</p>
+            <p class="pf__difere">Ela olha o emagrecimento pela porta que a maioria das clínicas ignora: o hormônio
               feminino. Menopausa, ciclo, tireoide e resistência à insulina não são um detalhe
-              do caso — muitas vezes são o caso.
-            </p>
-            <ul>
-              <li>Consulta de 1h</li>
-              <li>Saúde da mulher, menopausa, alterações hormonais e emagrecimento feminino</li>
-              <li>Lipedema</li>
-              <li>Investigação de menopausa, tireoide, resistência à insulina e metabolismo</li>
-              <li>Tratamentos hormonais femininos</li>
-              <li>Análise de composição corporal: gordura, massa muscular e metabolismo</li>
-            </ul>
-            <p class="medico__casos">
-              Costuma conduzir mulheres que sentem que o corpo mudou de regra depois dos 40,
-              na menopausa ou em meio a alterações hormonais.
-            </p>
-            <div class="medico__rodape">
-              <p class="medico__preco">R$ 650</p>
-              <p class="medico__reserva">Reserva de R$ 150, descontada do valor da consulta.</p>
+              do caso — muitas vezes são o caso.</p>
+            <ul class="pf__itens"><li>Consulta de 1h</li><li>Saúde da mulher, menopausa, alterações hormonais e emagrecimento feminino</li><li>Lipedema</li><li>Investigação de menopausa, tireoide, resistência à insulina e metabolismo</li><li>Tratamentos hormonais femininos</li><li>Análise de composição corporal: gordura, massa muscular e metabolismo</li></ul>
+            <p class="pf__casos">Costuma conduzir mulheres que sentem que o corpo mudou de regra depois dos 40,
+              na menopausa ou em meio a alterações hormonais.</p>
+            
+            <div class="pf__rodape">
+              <div><p class="pf__preco">R$ 650</p><p class="pf__reserva">Reserva de R$ 150, descontada do valor da consulta.</p></div>
               <a class="btn btn--ouro" data-reserva="vivian" href="#">Garantir horário com a Dra. Vivian</a>
             </div>
           </div>
         </article>
-
-        <article class="medico" data-medico="luca" data-reveal style="--d:2">
-          <div class="medico__foto">
-            <img src="assets/dr-luca.webp" alt="Dr. Luca Bonaccorsi" width="760" height="1282" loading="lazy" decoding="async">
-          </div>
-          <div class="medico__corpo">
-            <p class="medico__papel">Aplicador do DOC 365</p>
-            <h3 class="titulo">Dr. Luca Bonaccorsi</h3>
-            <!-- PENDENTE 1 e 2: CRM do Dr. Luca e confirmacao da formacao. -->
-            <p class="medico__difere">
-              Para ele, a balança é o começo da conversa, não o fim dela. Nas palavras dele:
+        <article class="pf" data-slide="2">
+          <figure class="pf__foto"><img src="assets/dr-luca.webp" alt="Dr. Luca Bonaccorsi" width="900" height="1600" loading="lazy" decoding="async"></figure>
+          <div class="pf__txt">
+            <p class="pf__papel">Aplicador do DOC 365</p>
+            <h3 class="titulo pf__nome">Dr. Luca Bonaccorsi</h3>
+            
+            <p class="pf__difere">Para ele, a balança é o começo da conversa, não o fim dela. Nas palavras dele:
               <em>“Seu resultado não precisa terminar na balança. Ele pode continuar em força,
-              definição e desempenho.”</em>
-            </p>
-            <ul>
-              <li>Consulta de 1h</li>
-              <li>Emagrecimento, saúde metabólica e medicina integrativa</li>
-              <li>Performance física e qualidade de vida</li>
-              <li>Leitura integrada dos exames, investigação hormonal e metabólica</li>
-              <li>Tratamentos hormonais masculinos</li>
-              <li>Sai da consulta com plano médico personalizado, prioridades e próximos passos definidos</li>
-            </ul>
-            <p class="medico__casos">
-              Costuma conduzir quem quer emagrecer sem abrir mão de força e desempenho — e quem
-              sente que o metabolismo parou de responder ao esforço.
-            </p>
-            <div class="medico__rodape">
-              <p class="medico__preco">R$ 650</p>
-              <p class="medico__reserva">Reserva de R$ 150, descontada do valor da consulta.</p>
+              definição e desempenho.”</em></p>
+            <ul class="pf__itens"><li>Consulta de 1h</li><li>Emagrecimento, saúde metabólica e medicina integrativa</li><li>Performance física e qualidade de vida</li><li>Leitura integrada dos exames, investigação hormonal e metabólica</li><li>Tratamentos hormonais masculinos</li><li>Sai da consulta com plano médico personalizado, prioridades e próximos passos definidos</li></ul>
+            <p class="pf__casos">Costuma conduzir quem quer emagrecer sem abrir mão de força e desempenho — e quem
+              sente que o metabolismo parou de responder ao esforço.</p>
+            
+            <div class="pf__rodape">
+              <div><p class="pf__preco">R$ 650</p><p class="pf__reserva">Reserva de R$ 150, descontada do valor da consulta.</p></div>
               <a class="btn btn--ouro" data-reserva="luca" href="#">Garantir horário com o Dr. Luca</a>
             </div>
           </div>
         </article>
-      </div>
-
-      <!-- O criador do Plano DOC 365 conduz o destaque: a linguagem darkroom
-           floresta + ouro que antes destacava a quarta porta agora destaca a
-           assinatura do metodo. -->
-    </div>
-  </section>
-
-  <!-- O criador do metodo ganha a propria dobra: em 1920x1080 os tres cards
-       ja ocupam a tela inteira, e espremer quatro pessoas junto nao cabe. -->
-  <section id="quarta-dobra" class="dobra" aria-label="O criador do Plano DOC 365">
-    <div class="env">
-      <div class="quarta" data-medico="luciano" data-reveal>
-        <div class="quarta__foto">
-          <img src="assets/dr-luciano.webp" alt="Dr. Luciano Alves Neves" width="800" height="1000" decoding="async">
-        </div>
-        <div>
-          <p class="olho" style="margin-bottom:14px">O criador do Plano DOC 365</p>
-          <h3 class="titulo" style="font-size:clamp(1.5rem,1.2rem+1.2vw,2rem);font-weight:500">Dr. Luciano Alves Neves</h3>
-          <p class="miudo" style="margin-top:8px;color:rgba(252,251,248,.55)">Médico CRM/PR 45049 &middot; Educador Físico CREF/PR 025507</p>
-          <p class="lede" style="margin-top:16px">
-            São mais de 17 anos rodando a própria clínica. É o único profissional da casa que junta os dois lados da conta: a medicina que
-            trata o metabolismo e a fisiologia de quem treina. Foi dessa combinação que nasceu
-            o DOC 365.
-          </p>
-          <ul>
-            <li>Consulta de 1h30 — a mais longa da clínica</li>
-            <li>Obesidade, metabolismo, lipedema, hipertrofia e performance esportiva</li>
-            <li>Tratamentos hormonais masculinos</li>
-            <li>Pós em emagrecimento e metabolismo &middot; metabolômica &middot; medicina funcional integrativa &middot; Curso Internacional de Obesidade (ABRAN)</li>
-            <li>Autor de <em>Lipedema — além da estética, um olhar completo</em> e <em>Musculação para iniciantes</em></li>
-          </ul>
-          <p class="quarta__aviso">
-            Costuma conduzir os casos que já passaram por várias tentativas, os quadros de
-            lipedema, pós-bariátrica e quem quer resultado com performance junto.
-          </p>
-          <div class="quarta__rodape">
-            <div>
-              <p class="quarta__preco">R$ 1.200</p>
-              <p class="medico__reserva" style="color:rgba(252,251,248,.6)">Reserva de R$ 350, descontada do valor da consulta.</p>
+        <article class="pf" data-slide="3">
+          <figure class="pf__foto"><img src="assets/dra-gislaine.webp" alt="Dra. Gislaine Szostak" width="900" height="1600" loading="lazy" decoding="async"></figure>
+          <div class="pf__txt">
+            <p class="pf__papel">Naturóloga &middot; Coach Integral Sistêmica &middot; Aplicadora do Plano DOC 365</p>
+            <h3 class="titulo pf__nome">Dra. Gislaine Szostak</h3>
+            
+            <p class="pf__difere">Nem todo mundo chega à Natuá por causa de um exame. Tem gente que chega porque a
+              rotina desandou: sono ruim, estresse alto, energia no chão, corpo cobrando por
+              caminhos que não aparecem no laboratório. Ela entra exatamente aí.</p>
+            <ul class="pf__itens"><li>Consulta de 1h</li><li>Especialista em Medicina Tradicional Chinesa e acupuntura</li><li>Avaliação completa do histórico e da composição corporal</li><li>Leitura de rotina, hábitos, queixas e nível de estresse</li><li>Orientações integrativas e direcionamento para acupuntura quando indicado</li></ul>
+            <p class="pf__casos">Costuma conduzir quem chega com a rotina desandada — sono ruim, estresse alto,
+              energia no chão — e prefere começar pela escuta, não por mais um exame.</p>
+            <p class="pf__aviso">Modalidade integrativa. Não é consulta médica e não substitui a avaliação médica.
+              Muitos pacientes fazem as duas coisas — não é uma ou outra.</p>
+            <div class="pf__rodape">
+              <div><p class="pf__preco">R$ 650</p><p class="pf__reserva">Reserva de R$ 150, descontada do valor da consulta.</p></div>
+              <a class="btn btn--ouro" data-reserva="gislaine" href="#">Garantir horário com a Dra. Gislaine</a>
             </div>
-            <a class="btn btn--linha" data-reserva="luciano" href="#">Garantir horário com o Dr. Luciano</a>
           </div>
-        </div>
+        </article>
       </div>
+      <nav class="pf__pontos" aria-label="Escolher profissional"><button type="button" data-ir="0" aria-label="Ver Dr. Luciano Alves Neves"></button><button type="button" data-ir="1" aria-label="Ver Dra. Vivian Gumy"></button><button type="button" data-ir="2" aria-label="Ver Dr. Luca Bonaccorsi"></button><button type="button" data-ir="3" aria-label="Ver Dra. Gislaine Szostak"></button></nav>
     </div>
   </section>
 
@@ -1442,5 +1444,61 @@ table.comparativo{width:100%;min-width:680px;border-collapse:collapse;font-size:
 })();
 </script>
 
+
+<script>
+/* Carrossel dos profissionais: a tela para e a rolagem troca quem aparece.
+   O clique nos pontos tambem troca, e o teclado navega por eles. Abaixo de
+   900px, ou com prefers-reduced-motion, o CSS empilha os quatro e este script
+   nao interfere. */
+(function () {
+  var sec = document.getElementById("profissionais");
+  if (!sec) return;
+  var slides = Array.prototype.slice.call(sec.querySelectorAll(".pf"));
+  var pontos = Array.prototype.slice.call(sec.querySelectorAll(".pf__pontos button"));
+  if (slides.length < 2) return;
+
+  var mq = window.matchMedia("(min-width:900px) and (prefers-reduced-motion:no-preference)");
+  var atual = -1, pendente = false, travado = -1;
+
+  function mostrar(i) {
+    if (i === atual) return;
+    atual = i;
+    slides.forEach(function (s, k) {
+      if (k === i) s.setAttribute("data-ativo", ""); else s.removeAttribute("data-ativo");
+    });
+    pontos.forEach(function (p, k) { p.setAttribute("aria-current", k === i ? "true" : "false"); });
+  }
+
+  function medir() {
+    pendente = false;
+    if (!mq.matches) { slides.forEach(function (s) { s.setAttribute("data-ativo", ""); }); atual = -1; return; }
+    if (travado >= 0) return;
+    var r = sec.getBoundingClientRect();
+    var total = r.height - window.innerHeight;
+    if (total <= 0) return;
+    var p = Math.min(Math.max(-r.top / total, 0), 0.9999);
+    mostrar(Math.floor(p * slides.length));
+  }
+  function onScroll() { if (pendente) return; pendente = true; requestAnimationFrame(medir); }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  if (mq.addEventListener) mq.addEventListener("change", function () { atual = -1; medir(); });
+
+  pontos.forEach(function (b, i) {
+    b.addEventListener("click", function () {
+      // leva a rolagem ate o trecho daquele profissional, em vez de so trocar
+      var topo = sec.getBoundingClientRect().top + window.scrollY;
+      var total = sec.offsetHeight - window.innerHeight;
+      travado = i;
+      mostrar(i);
+      window.scrollTo({ top: topo + total * ((i + 0.5) / slides.length), behavior: "smooth" });
+      setTimeout(function () { travado = -1; }, 700);
+    });
+  });
+
+  medir();
+})();
+</script>
 </body>
 </html>

@@ -550,40 +550,6 @@ table.comparativo{width:100%;min-width:680px;border-collapse:collapse;font-size:
   /* faltavam 42px: o respiro da dobra e do card cede o suficiente */
 }
 
-/* ================= PROFISSIONAIS: CARROSSEL DEITADO =====================
-   A dobra fica alta, a tela para e a rolagem troca o profissional. Como cada
-   um ocupa a tela inteira, nada de fonte encolhida — o texto volta ao tamanho
-   normal do resto da pagina. */
-.pf__head{margin-bottom:clamp(24px,3vh,40px)}
-.pf__palco{position:relative;display:grid}
-.pf{grid-area:1/1;display:grid;gap:clamp(24px,3vw,48px);align-items:center}
-@media(min-width:900px){.pf{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr)}}
-.pf__foto{margin:0;aspect-ratio:4/5;overflow:hidden;background:var(--floresta-3);
-  box-shadow:0 24px 60px rgba(3,19,15,.4)}
-.pf__foto img{width:100%;height:100%;object-fit:cover;object-position:center 16%}
-.pf__papel{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--ouro);margin-bottom:12px}
-.pf__nome{font-size:clamp(1.7rem,1.25rem+1.6vw,2.5rem);line-height:1.1}
-.pf__crm{margin-top:8px;font-size:13px;color:rgba(252,251,248,.55)}
-.pf__difere{margin-top:16px;font-size:15.5px;line-height:1.75;color:rgba(252,251,248,.76);max-width:58ch}
-.pf__itens{margin:20px 0 0;padding:0;list-style:none;display:grid;gap:10px;
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
-.pf__itens li{display:grid;grid-template-columns:15px minmax(0,1fr);gap:11px;
-  font-size:14px;line-height:1.62;color:rgba(252,251,248,.66)}
-.pf__itens li::before{content:"";width:5px;height:5px;margin-top:9px;border-radius:50%;background:var(--ouro)}
-.pf__casos{margin-top:18px;padding-top:16px;border-top:1px solid rgba(252,251,248,.12);
-  font-size:14px;line-height:1.68;color:rgba(252,251,248,.6);max-width:60ch}
-.pf__aviso{margin-top:16px;padding:12px 16px;background:rgba(195,161,78,.08);
-  border-left:2px solid var(--ouro);font-size:13px;line-height:1.6;color:rgba(252,251,248,.66);max-width:58ch}
-.pf__rodape{margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 32px}
-.pf__preco{font-family:'Playfair Display',serif;font-size:34px;font-weight:500;line-height:1;color:#FCFBF8}
-.pf__reserva{margin-top:7px;font-size:12.5px;color:rgba(252,251,248,.6)}
-.pf__pontos{display:flex;gap:10px;justify-content:center;margin-top:clamp(20px,3vh,36px)}
-.pf__pontos button{width:34px;height:3px;padding:0;border:0;cursor:pointer;
-  background:rgba(252,251,248,.2);transition:background .4s ease,transform .4s ease}
-.pf__pontos button[aria-current="true"]{background:var(--ouro);transform:scaleY(2)}
-.pf__pontos button:hover{background:rgba(195,161,78,.6)}
-
 /* com JS: um por vez, com a tela parada */
 html.js #profissionais{min-height:400vh}
 html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
@@ -608,38 +574,100 @@ html.js .pf[data-ativo]{opacity:1;visibility:visible;transform:none}
   .pf__pontos{display:none}
 }
 
-/* ---- correcao de contraste: a dobra e clara, o slide e escuro -----------
-   As cores tinham vindo do bloco do Dr. Luciano, que ficava sobre o verde. Na
-   dobra de profissionais o fundo e creme: texto quase branco sumia. Cada slide
-   passa a ter a propria moldura escura, como no desenho original. */
-.pf{background:linear-gradient(150deg,var(--floresta-2,#0E2A1E),var(--floresta,#07160F) 70%);
-  color:#FCFBF8;padding:clamp(22px,2.4vw,40px);
-  border:1px solid rgba(195,161,78,.2);box-shadow:0 30px 80px rgba(3,19,15,.34)}
-.pf__foto{box-shadow:none;border:1px solid rgba(195,161,78,.14)}
-.pf__nome{color:#FCFBF8}
-.pf__papel{color:var(--ouro)}
-.pf__crm{color:rgba(252,251,248,.6)}
-.pf__difere{color:rgba(252,251,248,.82)}
-.pf__itens li{color:rgba(252,251,248,.72)}
-.pf__casos{color:rgba(252,251,248,.64);border-top-color:rgba(252,251,248,.14)}
-.pf__aviso{color:rgba(252,251,248,.72)}
-.pf__preco{color:#FCFBF8}
-.pf__reserva{color:rgba(252,251,248,.64)}
-.pf__pontos button{background:rgba(23,20,13,.18)}
-.pf__pontos button:hover{background:rgba(107,83,32,.5)}
-.pf__pontos button[aria-current="true"]{background:var(--ouro)}
 /* o botao dentro do slide precisa ler sobre escuro */
 .pf .btn--linha{color:rgba(252,251,248,.8);box-shadow:inset 0 0 0 1px rgba(252,251,248,.26)}
 .pf .btn--linha:hover{color:#FCFBF8;box-shadow:inset 0 0 0 1px rgba(195,161,78,.7)}
 
-/* ---- item da lista: bloco, nao grid -------------------------------------
-   Como grid de duas colunas, cada <em> dentro do texto virava uma celula e o
-   item quebrava palavra a palavra. Bloco com o ponto no ::before nao se importa
-   com quantos elementos o texto tem dentro. */
-.pf__itens li{display:block!important;position:relative;padding-left:17px;
-  grid-template-columns:none!important}
-.pf__itens li::before{position:absolute;left:0;top:.62em;margin-top:0}
-.pf__itens li em{font-style:italic}
+
+/* ================= PROFISSIONAIS: PALCO DE ALTURA FIXA ==================
+   A foto tinha aspect-ratio 4/5: numa coluna de 590px ela sozinha pedia 737px
+   de altura e o card saia da tela. Aqui o palco tem altura vinda da tela e a
+   foto preenche essa altura — a largura e que se ajusta.
+   A troca e lateral: entra pela direita, sai pela esquerda. */
+#profissionais{padding-block:clamp(40px,5vh,72px)}
+.pf__head{margin-bottom:clamp(18px,2.4vh,32px)}
+.pf__palco{position:relative;display:grid;overflow:hidden;
+  height:clamp(430px,66vh,660px)}
+.pf{grid-area:1/1;display:grid;gap:clamp(20px,2.2vw,40px);align-items:stretch;height:100%;
+  background:linear-gradient(150deg,var(--floresta-2,#061D17),var(--floresta,#03130F) 72%);
+  color:#FCFBF8;border:1px solid rgba(195,161,78,.2);
+  box-shadow:0 26px 70px rgba(3,19,15,.34);overflow:hidden}
+@media(min-width:900px){.pf{grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr)}}
+
+.pf__foto{margin:0;height:100%;overflow:hidden;background:var(--floresta-3,#0C2C22)}
+.pf__foto img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
+
+.pf__txt{display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(22px,2.4vw,44px) clamp(22px,2.4vw,44px) clamp(22px,2.4vw,44px) 0;min-width:0}
+@media(max-width:899px){.pf__txt{padding:26px}}
+.pf__papel{font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ouro);margin-bottom:10px}
+.pf__nome{font-size:clamp(1.5rem,1.1rem+1.3vw,2.15rem);line-height:1.1;color:#FCFBF8}
+.pf__crm{margin-top:7px;font-size:12.5px;color:rgba(252,251,248,.58)}
+.pf__difere{margin-top:14px;font-size:14.5px;line-height:1.7;color:rgba(252,251,248,.82);max-width:60ch}
+.pf__itens{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:8px;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+.pf__itens li{display:block;position:relative;padding-left:16px;
+  font-size:13.5px;line-height:1.58;color:rgba(252,251,248,.72)}
+.pf__itens li::before{content:"";position:absolute;left:0;top:.6em;
+  width:5px;height:5px;border-radius:50%;background:var(--ouro)}
+.pf__casos{margin-top:14px;padding-top:13px;border-top:1px solid rgba(252,251,248,.13);
+  font-size:13px;line-height:1.6;color:rgba(252,251,248,.62);max-width:62ch}
+.pf__aviso{margin-top:12px;padding:10px 14px;background:rgba(195,161,78,.09);
+  border-left:2px solid var(--ouro);font-size:12.5px;line-height:1.55;
+  color:rgba(252,251,248,.7);max-width:60ch}
+.pf__rodape{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px}
+.pf__preco{font-family:'Playfair Display',serif;font-size:30px;font-weight:500;line-height:1;color:#FCFBF8}
+.pf__reserva{margin-top:6px;font-size:12px;color:rgba(252,251,248,.62)}
+.pf .btn{padding:13px 22px}
+.pf .btn--linha{color:rgba(252,251,248,.82);box-shadow:inset 0 0 0 1px rgba(252,251,248,.26)}
+.pf .btn--linha:hover{color:#FCFBF8;box-shadow:inset 0 0 0 1px rgba(195,161,78,.7)}
+
+.pf__pontos{display:flex;gap:10px;justify-content:center;margin-top:clamp(16px,2.4vh,28px)}
+.pf__pontos button{width:38px;height:3px;padding:0;border:0;cursor:pointer;
+  background:rgba(23,20,13,.2);transition:background .4s ease,transform .4s ease}
+.pf__pontos button[aria-current="true"]{background:var(--ouro);transform:scaleY(2.2)}
+.pf__pontos button:hover{background:rgba(107,83,32,.55)}
+
+/* ---- a troca: deslize lateral ----------------------------------------- */
+html.js .pf{opacity:0;visibility:hidden;pointer-events:none;
+  transform:translateX(9%);
+  transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .62s cubic-bezier(.16,1,.3,1),
+             visibility 0s linear .62s}
+html.js .pf[data-saindo]{opacity:0;visibility:visible;transform:translateX(-9%);
+  transition:opacity .42s ease,transform .62s cubic-bezier(.16,1,.3,1)}
+html.js .pf[data-ativo]{opacity:1;visibility:visible;pointer-events:auto;transform:none;
+  transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .62s cubic-bezier(.16,1,.3,1),
+             visibility 0s}
+/* a foto acompanha mais devagar que o texto, dando profundidade a passagem */
+html.js .pf__foto img{transform:scale(1.06);transition:transform 1.1s cubic-bezier(.16,1,.3,1)}
+html.js .pf[data-ativo] .pf__foto img{transform:none}
+
+html.js #profissionais{min-height:420vh}
+html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;padding-block:clamp(28px,4vh,56px)}
+
+/* sem JS, celular, ou menos movimento: os quatro empilhados */
+@media(prefers-reduced-motion:reduce){
+  html.js #profissionais{min-height:0}
+  html.js #profissionais .pf__env{position:static;min-height:0}
+  html.js .pf__palco{display:grid;gap:56px;height:auto;overflow:visible}
+  html.js .pf{grid-area:auto;height:auto;opacity:1!important;visibility:visible!important;
+    transform:none!important;pointer-events:auto!important}
+  html.js .pf__foto{height:auto;aspect-ratio:4/5}
+  html.js .pf__foto img{transform:none!important}
+  .pf__pontos{display:none}
+}
+@media(max-width:899px){
+  html.js #profissionais{min-height:0}
+  html.js #profissionais .pf__env{position:static;min-height:0}
+  html.js .pf__palco{gap:48px;height:auto;overflow:visible}
+  html.js .pf{grid-area:auto;height:auto;opacity:1!important;visibility:visible!important;
+    transform:none!important;pointer-events:auto!important}
+  html.js .pf__foto{height:auto;aspect-ratio:4/5}
+  html.js .pf__foto img{transform:none!important}
+  .pf__pontos{display:none}
+}
 </style>
 </head>
 <body>
@@ -1464,7 +1492,17 @@ html.js .pf[data-ativo]{opacity:1;visibility:visible;transform:none}
     if (i === atual) return;
     atual = i;
     slides.forEach(function (s, k) {
-      if (k === i) s.setAttribute("data-ativo", ""); else s.removeAttribute("data-ativo");
+      if (k === i) {
+        s.removeAttribute("data-saindo");
+        s.setAttribute("data-ativo", "");
+      } else if (s.hasAttribute("data-ativo")) {
+        // quem sai vai para a esquerda; quem entra vem da direita
+        s.removeAttribute("data-ativo");
+        s.setAttribute("data-saindo", "");
+        setTimeout(function () { s.removeAttribute("data-saindo"); }, 640);
+      } else {
+        s.removeAttribute("data-ativo");
+      }
     });
     pontos.forEach(function (p, k) { p.setAttribute("aria-current", k === i ? "true" : "false"); });
   }

@@ -668,6 +668,57 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
   html.js .pf__foto img{transform:none!important}
   .pf__pontos{display:none}
 }
+
+.tab-nota{margin-top:14px;padding-left:16px;border-left:2px solid var(--ouro);
+  font-size:13px;line-height:1.65;color:var(--apagado,#5C6B5C);max-width:70ch}
+
+/* ================= CELULAR: TOQUE E LEITURA =============================
+   Medido em 500px: 5 alvos abaixo de 44px e 48 trechos com fonte abaixo de
+   12px, alguns em 9,5px. Aqui nada de conteudo muda — so o alvo do dedo e o
+   tamanho minimo de leitura. */
+@media(max-width:899px){
+  /* alvo de toque: 44px de altura util, sem mexer no visual */
+  .topo__cta{min-height:44px;display:inline-flex;align-items:center;font-size:11px;padding:0 18px}
+  .rodape a,.footer__col a,.duvida a.link{display:inline-block;padding-block:11px;min-height:44px}
+  .topo .voltar{min-height:44px;display:inline-flex;align-items:center}
+
+  /* leitura: nada abaixo de 11px, e o corpo nunca abaixo de 14px */
+  .olho,.eyebrow{font-size:11px;letter-spacing:.24em}
+  .pf__papel,.medico__papel,.video__dica,.hero__cue{font-size:11px}
+  .cartao__grupo,.comparativo .grupo td{font-size:11px}
+  .miudo,.medico__reserva,.pf__reserva,.pf__crm{font-size:13px}
+  .pf__itens li,.medico li,.faq .resposta p{font-size:14px;line-height:1.65}
+  .pf__difere,.lede{font-size:15px;line-height:1.7}
+  .pf__casos,.pf__aviso{font-size:13.5px;line-height:1.6}
+  .comparativo,.grade-cartoes{font-size:14px}
+  .btn{font-size:11.5px;min-height:48px}
+  .tab-nota{font-size:13px}
+
+  /* respiro: no celular a dobra nao precisa dos 112px do desktop */
+  .dobra{padding-block:56px}
+  .pf__palco{gap:40px}
+}
+@media(max-width:520px){
+  .topo__cta{font-size:10.5px;padding:0 14px;letter-spacing:.14em}
+  .pf__itens{grid-template-columns:minmax(0,1fr)}
+}
+
+@media(max-width:899px){
+  /* ultimos 9 rotulos abaixo de 11px: papel no cabecalho da tabela e no cartao */
+  .comparativo thead .papel,.cartao__papel,.grade-cartoes .papel{font-size:11px}
+  .topo__cta{font-size:11px}
+}
+
+@media(max-width:899px){
+  /* seletores com a mesma especificidade das regras base, senao perdem */
+  .comparativo thead .papel{font-size:11px}
+  .conta thead th{font-size:11px}
+}
+
+@media(max-width:899px){
+  /* o papel do profissional nos cartoes do celular: 9,5px era ilegivel */
+  .cartao__topo p{font-size:11px;line-height:1.5}
+}
 </style>
 </head>
 <body>
@@ -844,38 +895,44 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
               <th scope="col"><span class="nome">Dr. Luciano</span><span class="papel">Criador do método</span></th>
               <th scope="col"><span class="nome">Dra. Vivian</span><span class="papel">Ginecologista &middot; CRM/PR 28.891</span></th>
               <th scope="col"><span class="nome">Dr. Luca</span><span class="papel">Médico</span></th>
+              <th scope="col"><span class="nome">Dra. Gislaine</span><span class="papel">Naturóloga</span></th>
             </tr>
           </thead>
           <tbody>
-            <tr class="grupo"><td colspan="4">Quem é e quanto tempo tem com você</td></tr>
+            <tr class="grupo"><td colspan="5">Quem é e quanto tempo tem com você</td></tr>
 
             <tr>
               <th scope="row">Especialidade</th>
               <td>Emagrecimento, metabolismo e medicina integrativa</td>
               <td>Ginecologia e saúde da mulher</td>
               <td>Emagrecimento e saúde metabólica</td>
+              <td>Naturologia, Medicina Tradicional Chinesa e acupuntura</td>
             </tr>
             <tr>
               <th scope="row">Duração da primeira consulta</th>
               <td><strong>1h30</strong></td><td>1h</td><td>1h</td>
+              <td>1h</td>
             </tr>
             <tr>
               <th scope="row">Atende também online</th>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
               <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não, só presencial</span></td>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
+              <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
             </tr>
             <tr class="casos">
               <th scope="row">Casos que mais chegam</th>
               <td>Quem já tentou várias vezes, lipedema, pós-bariátrica, hormônio masculino e quem quer resultado com performance junto</td>
               <td>Mulheres na menopausa, com alteração hormonal, tireoide ou emagrecimento depois dos 40</td>
               <td>Metabolismo travado, força, definição e desempenho</td>
+              <td>Rotina desandada: sono ruim, estresse alto, energia no chão</td>
             </tr>
 
-            <tr class="grupo"><td colspan="4">O que trata</td></tr>
+            <tr class="grupo"><td colspan="5">O que trata</td></tr>
 
             <tr>
               <th scope="row">Emagrecimento e metabolismo</th>
+              <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
@@ -885,16 +942,19 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
               <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
+              <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
             </tr>
             <tr>
               <th scope="row">Definição e hipertrofia</th>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
               <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
+              <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
             </tr>
             <tr>
               <th scope="row">Performance esportiva</th>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
+              <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
               <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
               <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
             </tr>
@@ -903,23 +963,27 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
               <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
               <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
+              <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
             </tr>
             <tr>
               <th scope="row">Tratamentos hormonais</th>
               <td>Masculinos</td><td>Femininos</td><td>Masculinos</td>
+              <td>&ndash;</td>
             </tr>
 
-            <tr class="grupo"><td colspan="4">O que a consulta contempla</td></tr>
+            <tr class="grupo"><td colspan="5">O que a consulta contempla</td></tr>
 
             <tr>
               <th scope="row">Análise aprofundada dos exames</th>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
+              <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
             </tr>
             <tr>
               <th scope="row">Coordenação do projeto de treino</th>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
+              <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
               <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
               <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
             </tr>
@@ -931,18 +995,21 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
               <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
+              <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
             </tr>
 
-            <tr class="grupo"><td colspan="4">Relação com o método</td></tr>
+            <tr class="grupo"><td colspan="5">Relação com o método</td></tr>
 
             <tr>
               <th scope="row">Criador do Plano DOC 365</th>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
               <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
               <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
+              <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
             </tr>
             <tr>
               <th scope="row">Aplica o Plano DOC 365</th>
+              <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
@@ -953,16 +1020,19 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
               <td><span class="preco">R$ 1.200</span></td>
               <td><span class="preco">R$ 650</span></td>
               <td><span class="preco">R$ 650</span></td>
+              <td><span class="preco">R$ 650</span></td>
             </tr>
             <tr class="reserva">
               <th scope="row">Reserva para garantir o horário</th>
               <td>R$ 350</td><td>R$ 150</td><td>R$ 150</td>
+              <td>R$ 150</td>
             </tr>
             <tr class="acao">
               <td></td>
               <td><a class="btn btn--ouro" data-reserva="luciano" href="#">Garantir horário</a></td>
               <td><a class="btn btn--ouro" data-reserva="vivian" href="#">Garantir horário</a></td>
               <td><a class="btn btn--ouro" data-reserva="luca" href="#">Garantir horário</a></td>
+              <td><a class="btn btn--ouro" data-reserva="gislaine" href="#">Garantir horário</a></td>
             </tr>
           </tbody>
         </table>
@@ -1244,11 +1314,22 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
       entradas.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add("reveal"); io.unobserve(e.target); }
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    }, { threshold: 0, rootMargin: "0px 0px -12% 0px" });
+    /* threshold 0 de proposito: o percentual e medido contra o ELEMENTO,
+       entao um bloco mais alto que a tela nunca o atinge e some para sempre.
+       O atraso vive no rootMargin, que e medido contra a tela. */
     revelaveis.forEach(function (el) { io.observe(el); });
   } else {
     revelaveis.forEach(function (el) { el.classList.add("reveal"); });
   }
+
+  /* Rede de seguranca do reveal: nenhum bloco pode ficar invisivel para sempre.
+     Se em 2,5s algum revelavel ainda nao recebeu .reveal, ele aparece assim mesmo. */
+  setTimeout(function () {
+    revelaveis.forEach(function (el) {
+      if (!el.classList.contains("reveal")) el.classList.add("reveal");
+    });
+  }, 2500);
 
   /* Contador dos numeros reais da operacao (texto final identico). */
   var contar = document.querySelectorAll(".contar");

@@ -719,6 +719,14 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
   /* o papel do profissional nos cartoes do celular: 9,5px era ilegivel */
   .cartao__topo p{font-size:11px;line-height:1.5}
 }
+
+@media(max-width:899px){
+  /* o cue era absoluto no rodape da hero; com a hero curta do celular ele caia
+     em cima do subtitulo. Aqui ele volta ao fluxo e ganha espaco proprio. */
+  .hero__cue{position:static;transform:none;left:auto;bottom:auto;
+    display:flex;align-items:center;justify-content:center;
+    width:max-content;margin:30px auto 0;min-height:44px}
+}
 </style>
 </head>
 <body>

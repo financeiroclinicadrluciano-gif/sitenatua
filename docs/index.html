@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>document.documentElement.classList.add("js");</script>
-<title>Consultas e valores | Natuá MedSpa — Curitiba</title>
-<meta name="generator" content="Natuá final 2026-08-11 — foto do Dr. Luciano embutida">
-<meta name="description" content="Os quatro profissionais da Natuá, o que cada um investiga na primeira consulta, os valores e a agenda. Escolha, garanta o horário e marque o dia — sem formulário.">
+<title>Consultas e valores | Natuá MedSpa, Curitiba</title>
+<meta name="generator" content="Natuá final 2026-08-11, foto do Dr. Luciano embutida">
+<meta name="description" content="Os quatro profissionais da Natuá, o que cada um investiga na primeira consulta, os valores e a agenda. Escolha, garanta o horário e marque o dia, sem formulário.">
 <link rel="canonical" href="https://natuamedspa.com.br/consultas">
 <meta property="og:title" content="Consultas e valores | Natuá MedSpa">
 <meta property="og:description" content="Veja o que cada profissional atende, quanto custa e garanta seu horário.">
@@ -586,16 +586,25 @@ html.js .pf[data-ativo]{opacity:1;visibility:visible;transform:none}
    A troca e lateral: entra pela direita, sai pela esquerda. */
 #profissionais{padding-block:clamp(40px,5vh,72px)}
 .pf__head{margin-bottom:clamp(18px,2.4vh,32px)}
-.pf__palco{position:relative;display:grid;overflow:hidden;
-  height:clamp(430px,66vh,660px)}
-.pf{grid-area:1/1;display:grid;gap:clamp(20px,2.2vw,40px);align-items:stretch;height:100%;
+.pf__palco{position:relative;display:grid;
+  /* min-height, nunca height: os slides dividem a mesma celula do grid, entao o
+     grid ja mede pelo maior. Com height fixa em 430px o texto de 635px da
+     Dra. Gislaine era cortado em 205px. */
+  min-height:clamp(430px,62vh,620px)}
+.pf{grid-area:1/1;display:grid;gap:clamp(20px,2.2vw,40px);align-items:stretch;height:auto;
   background:linear-gradient(150deg,var(--floresta-2,#061D17),var(--floresta,#03130F) 72%);
   color:#FCFBF8;border:1px solid rgba(195,161,78,.2);
   box-shadow:0 26px 70px rgba(3,19,15,.34);overflow:hidden}
 @media(min-width:900px){.pf{grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr)}}
 
-.pf__foto{margin:0;height:100%;overflow:hidden;background:var(--floresta-3,#0C2C22)}
-.pf__foto img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.pf__foto{position:relative;margin:0;min-height:100%;overflow:hidden;
+  background:var(--floresta-3,#0C2C22)}
+/* A imagem sai do fluxo de proposito. Ela e um retrato 900x1600: em altura
+   automatica pedia 761px numa coluna de 428px e era ELA, nao o texto, quem
+   definia a altura do card. Fora do fluxo, quem manda e o texto, e a foto
+   preenche o que sobrar. */
+.pf__foto img{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center 18%}
 
 .pf__txt{display:flex;flex-direction:column;justify-content:center;
   padding:clamp(22px,2.4vw,44px) clamp(22px,2.4vw,44px) clamp(22px,2.4vw,44px) 0;min-width:0}
@@ -727,13 +736,36 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
     display:flex;align-items:center;justify-content:center;
     width:max-content;margin:30px auto 0;min-height:44px}
 }
+
+/* Foto do cartao do comparativo. Retrato largo: a tabela e uma leitura de
+   comparacao, entao a foto identifica sem roubar a tela. */
+.cartao__foto{margin:0;overflow:hidden;background:var(--floresta-3,#0C2C22);
+  aspect-ratio:4/3}
+.cartao__foto img{width:100%;height:100%;object-fit:cover;object-position:center 24%}
+
+/* ---- tela baixa: a dobra dos profissionais precisa caber -----------------
+   Medido em 649px de altura util: o conjunto pedia 777px, 100 a mais do que
+   cabia. Aqui so o espacamento cede. O texto do card, que e o piso real da
+   altura, fica intacto: nenhuma fonte diminui e nenhuma linha some. */
+@media(min-width:900px) and (max-height:820px){
+  html.js #profissionais .pf__env{padding-block:8px}
+  #profissionais .pf__head{margin-bottom:6px;gap:2px}
+  #profissionais .pf__head h2{line-height:1.12}
+  .pf__txt{padding:17px 22px 17px 0}
+  .pf__difere{margin-top:8px}
+  .pf__itens{margin-top:9px;gap:5px}
+  .pf__casos{margin-top:8px;padding-top:8px}
+  .pf__aviso{margin-top:8px;padding:7px 11px}
+  .pf__rodape{margin-top:10px}
+  .pf__pontos{margin-top:8px}
+}
 </style>
 </head>
 <body>
 
 <header class="topo" data-rolado="nao">
   <div class="env">
-    <a class="topo__logo" href="/" aria-label="Natuá MedSpa — ir para a home">
+    <a class="topo__logo" href="/" aria-label="Natuá MedSpa, ir para a home">
       <img src="assets/logo-natua.webp" alt="Logo Natuá MedSpa" width="69" height="98" />
     </a>
     <nav class="topo__nav" aria-label="Navegação principal">
@@ -802,7 +834,7 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
             <p class="pf__difere">São mais de 17 anos rodando a própria clínica. É o único profissional da casa que junta os dois lados da conta: a medicina que
             trata o metabolismo e a fisiologia de quem treina. Foi dessa combinação que nasceu
             o DOC 365.</p>
-            <ul class="pf__itens"><li>Consulta de 1h30 — a mais longa da clínica</li><li>Obesidade, metabolismo, lipedema, hipertrofia e performance esportiva</li><li>Tratamentos hormonais masculinos</li><li>Pós em emagrecimento e metabolismo &middot; metabolômica &middot; medicina funcional integrativa &middot; Curso Internacional de Obesidade (ABRAN)</li><li>Autor de <em>Lipedema — além da estética, um olhar completo</em> e <em>Musculação para iniciantes</em></li></ul>
+            <ul class="pf__itens"><li>Consulta de 1h30, a mais longa da clínica</li><li>Obesidade, metabolismo, lipedema, hipertrofia e performance esportiva</li><li>Tratamentos hormonais masculinos</li><li>Pós em emagrecimento e metabolismo &middot; metabolômica &middot; medicina funcional integrativa &middot; Curso Internacional de Obesidade (ABRAN)</li><li>Autor de <em>Lipedema — além da estética, um olhar completo</em> e <em>Musculação para iniciantes</em></li></ul>
             
             <p class="pf__aviso">Costuma conduzir os casos que já passaram por várias tentativas, os quadros de
             lipedema, pós-bariátrica e quem quer resultado com performance junto.</p>
@@ -820,7 +852,7 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
             <p class="pf__crm">Ginecologista &middot; CRM/PR 28.891</p>
             <p class="pf__difere">Ela olha o emagrecimento pela porta que a maioria das clínicas ignora: o hormônio
               feminino. Menopausa, ciclo, tireoide e resistência à insulina não são um detalhe
-              do caso — muitas vezes são o caso.</p>
+              do caso, muitas vezes são o caso.</p>
             <ul class="pf__itens"><li>Consulta de 1h</li><li>Saúde da mulher, menopausa, alterações hormonais e emagrecimento feminino</li><li>Lipedema</li><li>Investigação de menopausa, tireoide, resistência à insulina e metabolismo</li><li>Tratamentos hormonais femininos</li><li>Análise de composição corporal: gordura, massa muscular e metabolismo</li></ul>
             <p class="pf__casos">Costuma conduzir mulheres que sentem que o corpo mudou de regra depois dos 40,
               na menopausa ou em meio a alterações hormonais.</p>
@@ -841,7 +873,7 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
               <em>“Seu resultado não precisa terminar na balança. Ele pode continuar em força,
               definição e desempenho.”</em></p>
             <ul class="pf__itens"><li>Consulta de 1h</li><li>Emagrecimento, saúde metabólica e medicina integrativa</li><li>Performance física e qualidade de vida</li><li>Leitura integrada dos exames, investigação hormonal e metabólica</li><li>Tratamentos hormonais masculinos</li><li>Sai da consulta com plano médico personalizado, prioridades e próximos passos definidos</li></ul>
-            <p class="pf__casos">Costuma conduzir quem quer emagrecer sem abrir mão de força e desempenho — e quem
+            <p class="pf__casos">Costuma conduzir quem quer emagrecer sem abrir mão de força e desempenho, e quem
               sente que o metabolismo parou de responder ao esforço.</p>
             
             <div class="pf__rodape">
@@ -860,10 +892,10 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
               rotina desandou: sono ruim, estresse alto, energia no chão, corpo cobrando por
               caminhos que não aparecem no laboratório. Ela entra exatamente aí.</p>
             <ul class="pf__itens"><li>Consulta de 1h</li><li>Especialista em Medicina Tradicional Chinesa e acupuntura</li><li>Avaliação completa do histórico e da composição corporal</li><li>Leitura de rotina, hábitos, queixas e nível de estresse</li><li>Orientações integrativas e direcionamento para acupuntura quando indicado</li></ul>
-            <p class="pf__casos">Costuma conduzir quem chega com a rotina desandada — sono ruim, estresse alto,
-              energia no chão — e prefere começar pela escuta, não por mais um exame.</p>
+            <p class="pf__casos">Costuma conduzir quem chega com a rotina desandada: sono ruim, estresse alto,
+              energia no chão. E prefere começar pela escuta, não por mais um exame.</p>
             <p class="pf__aviso">Modalidade integrativa. Não é consulta médica e não substitui a avaliação médica.
-              Muitos pacientes fazem as duas coisas — não é uma ou outra.</p>
+              Muitos pacientes fazem as duas coisas, não é uma ou outra.</p>
             <div class="pf__rodape">
               <div><p class="pf__preco">R$ 650</p><p class="pf__reserva">Reserva de R$ 150, descontada do valor da consulta.</p></div>
               <a class="btn btn--ouro" data-reserva="gislaine" href="#">Garantir horário com a Dra. Gislaine</a>
@@ -881,7 +913,7 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
       <h2 class="titulo" id="t-comp" data-reveal style="--d:1">Com quem fazer a primeira consulta</h2>
       <p class="lede" style="margin-top:26px;--d:2" data-reveal>
         Os quatro aplicam o mesmo plano, na mesma clínica, com a mesma equipe por trás.
-        A diferença não é nível de cuidado — é <strong>tipo de caso</strong> e
+        A diferença não é nível de cuidado, é <strong>tipo de caso</strong> e
         <strong>tempo de consulta</strong>.
       </p>
       <p class="lede" style="margin-top:16px;--d:3" data-reveal>
@@ -894,7 +926,7 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
         <table class="comparativo">
           <caption class="so-leitor">
             Comparativo entre as consultas médicas de Dr. Luciano Alves Neves, Dra. Vivian Gumy
-            e Dr. Luca Bonaccorsi — a quarta profissional, Dra. Gislaine Szostak, conduz a
+            e Dr. Luca Bonaccorsi, a quarta profissional, Dra. Gislaine Szostak, conduz a
             modalidade integrativa e está descrita no card dela.
           </caption>
           <thead>
@@ -1059,7 +1091,7 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
         <ul>
           <li data-medico="vivian"><span>Se o que mais pesa hoje é menopausa, ciclo, hormônio feminino ou emagrecimento depois dos 40</span><b>Dra. Vivian</b></li>
           <li data-medico="luca"><span>Se o que mais pesa é metabolismo travado, força, definição e desempenho</span><b>Dr. Luca</b></li>
-          <li data-medico="luciano"><span>Se o caso já passou por várias tentativas, lipedema, pós-bariátrica, hormônio masculino — ou você quer o criador do método conduzindo</span><b>Dr. Luciano</b></li>
+          <li data-medico="luciano"><span>Se o caso já passou por várias tentativas, lipedema, pós-bariátrica, hormônio masculino, ou você quer o criador do método conduzindo</span><b>Dr. Luciano</b></li>
           <li data-medico="gislaine"><span>Se o que mais pesa é rotina, estresse, sono e uma abordagem integrativa</span><b>Dra. Gislaine</b></li>
         </ul>
       </div>
@@ -1096,7 +1128,7 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
         <div data-reveal>
           <h3>Por que existe reserva</h3>
           <p>Uma consulta de 1h30 bloqueia um bloco inteiro da agenda médica. Quando o horário
-             é marcado e ninguém aparece, ele não volta para a fila — ele se perde, e outra
+             é marcado e ninguém aparece, ele não volta para a fila, ele se perde, e outra
              pessoa que estava esperando ficou sem.</p>
         </div>
         <div data-reveal style="--d:1">
@@ -1107,7 +1139,7 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
         <div data-reveal style="--d:2">
           <h3>Se precisar mudar a data</h3>
           <p>Fale com a nossa equipe pelo mesmo WhatsApp em que você marcou. Quanto antes você
-             avisar, mais chance de encaixar outro horário — e de liberar o seu para quem está
+             avisar, mais chance de encaixar outro horário, e de liberar o seu para quem está
              na espera.</p>
         </div>
       </div>
@@ -1142,11 +1174,11 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
           <summary>O que exatamente está incluído no valor da consulta? Vou sair com um plano ou com um orçamento?</summary>
           <div class="resposta">
             <p>Você sai com a leitura do seu caso: o que foi investigado, o que os exames e a
-               composição corporal mostram, e qual é o caminho recomendado — em que fase o seu
+               composição corporal mostram, e qual é o caminho recomendado: em que fase o seu
                corpo entra e o que vem depois. Isso é o que a consulta entrega, e é seu
                independentemente de você seguir ou não com o plano completo.</p>
             <p>Na prática, a consulta contempla: avaliação aprofundada do histórico, sintomas,
-               rotina e tratamentos anteriores; análise da composição corporal — gordura, massa
+               rotina e tratamentos anteriores; análise da composição corporal: gordura, massa
                muscular e metabolismo; leitura integrada dos exames com investigação hormonal e
                metabólica; e um plano médico personalizado, com prioridades e próximos passos
                claros. A tabela acima mostra o que muda de um profissional para o outro.</p>
@@ -1157,11 +1189,11 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
         <details data-reveal style="--d:1">
           <summary>Por que preciso pagar a reserva antes de conversar com alguém?</summary>
           <div class="resposta">
-            <p>Porque o horário fica bloqueado no momento em que você reserva — e no caso do
+            <p>Porque o horário fica bloqueado no momento em que você reserva, e no caso do
                Dr. Luciano, é um bloco de 1h30 na agenda. A reserva não é uma cobrança a mais:
                ela é parte do valor da consulta e é descontada do total. Você paga R$ 350 agora
                e R$ 850 no dia; ou R$ 150 agora e R$ 500 no dia, nas demais agendas.</p>
-            <p>Se precisar mudar a data, fale com a nossa equipe pelo WhatsApp — quanto antes
+            <p>Se precisar mudar a data, fale com a nossa equipe pelo WhatsApp, quanto antes
                você avisar, mais fácil encaixar outro horário.</p>
           </div>
         </details>
@@ -1183,7 +1215,7 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
         <details data-reveal style="--d:3">
           <summary>Preciso levar exames? E se eu não tiver nenhum?</summary>
           <div class="resposta">
-            <p>Pode levar os que tiver, mesmo antigos — eles ajudam a montar a linha do tempo do
+            <p>Pode levar os que tiver, mesmo antigos, eles ajudam a montar a linha do tempo do
                caso. E se não tiver nenhum, tudo bem: a consulta acontece do mesmo jeito e os
                exames necessários são solicitados a partir do que for encontrado na avaliação.
                Ninguém precisa chegar com dever de casa pronto.</p>
@@ -1194,7 +1226,7 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
         <details data-reveal style="--d:4">
           <summary>A consulta é presencial em Curitiba? Dá para fazer de outra cidade?</summary>
           <div class="resposta">
-            <p>A clínica fica na <strong>Av. Paraná, 286 — Cabral, Curitiba/PR</strong>.</p>
+            <p>A clínica fica na <strong>Av. Paraná, 286, Cabral, Curitiba/PR</strong>.</p>
             <p>Com o <strong>Dr. Luciano</strong> e o <strong>Dr. Luca</strong>, a primeira
                consulta também pode ser <strong>online</strong>, para quem é de fora ou não
                consegue ir até a clínica. Com a <strong>Dra. Vivian</strong> e a
@@ -1233,7 +1265,7 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
 
 <footer class="rodape">
   <div class="env">
-    <p>Natuá MedSpa &middot; <a href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Paran%C3%A1,+286+-+Cabral,+Curitiba+-+PR,+80035-130" target="_blank" rel="noopener">Av. Paraná, 286 — Cabral, Curitiba/PR</a></p>
+    <p>Natuá MedSpa &middot; <a href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Paran%C3%A1,+286+-+Cabral,+Curitiba+-+PR,+80035-130" target="_blank" rel="noopener">Av. Paraná, 286, Cabral, Curitiba/PR</a></p>
     <p><a href="/">Voltar ao site</a> &middot; <a href="/planodoc365">Plano DOC 365</a> &middot; <a href="/blog">Blog</a></p>
   </div>
 </footer>
@@ -1441,7 +1473,29 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
       var papel = th.querySelector(".papel");
       var card = document.createElement("article");
       card.className = "cartao";
-      var html = '<div class="cartao__topo"><h3>' +
+      /* A foto vem do proprio carrossel, casada pelo nome. Nada de arquivo novo:
+         e a mesma imagem que a pagina ja baixou. Sem correspondencia, o cartao
+         fica sem foto em vez de quebrar. */
+      var textoNome = nome ? nome.textContent.trim() : "";
+      var fotoSrc = "", fotoAlt = "";
+      Array.prototype.slice.call(document.querySelectorAll("#profissionais .pf"))
+        .forEach(function (pf) {
+          var n = pf.querySelector(".pf__nome");
+          var im = pf.querySelector(".pf__foto img");
+          if (!n || !im || fotoSrc) return;
+          var completo = n.textContent.trim();
+          /* "Dra. Vivian" na tabela contra "Dra. Vivian Gumy" no carrossel */
+          if (completo.indexOf(textoNome) === 0 || textoNome.indexOf(completo) === 0) {
+            fotoSrc = im.getAttribute("src");
+            fotoAlt = im.getAttribute("alt") || completo;
+          }
+        });
+      var html = "";
+      if (fotoSrc) {
+        html += '<figure class="cartao__foto"><img src="' + fotoSrc +
+          '" alt="' + fotoAlt + '" loading="lazy" decoding="async" /></figure>';
+      }
+      html += '<div class="cartao__topo"><h3>' +
         (nome ? nome.textContent : "") + "</h3><p>" +
         (papel ? papel.textContent : "") + "</p></div>";
       tabela.querySelectorAll("tbody tr").forEach(function (tr) {

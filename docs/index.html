@@ -644,9 +644,15 @@ html.js .pf[data-ativo]{opacity:1;visibility:visible;transform:none}
    lia como se fosse uma coisa so. No celular a lista vira uma coluna; da largura
    de tablet para cima ela usa duas, para o bloco nao virar uma escada. */
 .pf__formacao{margin-top:16px;padding:13px 15px;border-radius:10px;
-  border:1px solid rgba(195,161,78,.24);background:rgba(195,161,78,.055)}
-.pf__formacao-rotulo{margin:0 0 8px;font-size:10px;font-weight:700;letter-spacing:.18em;
+  border:1px solid rgba(195,161,78,.34);background:rgba(195,161,78,.075)}
+/* O numero de pos-graduacoes e o argumento de autoridade que o Dr. Luciano
+   pediu para destacar em 20/08. Vem antes da lista e em corpo grande: quem so
+   passa o olho no card precisa sair sabendo quantas sao. */
+.pf__formacao-rotulo{margin:0 0 9px;display:flex;align-items:baseline;gap:9px;
+  font-size:11px;font-weight:700;letter-spacing:.16em;
   text-transform:uppercase;color:var(--ouro-claro)}
+.pf__formacao-num{font-family:'Playfair Display',serif;font-size:30px;font-weight:500;
+  line-height:1;letter-spacing:0;color:var(--ouro)}
 .pf__formacao-lista{margin:0;padding:0;list-style:none;display:grid;gap:6px;
   grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
 .pf__formacao-lista li{position:relative;padding-left:15px;font-size:13px;
@@ -897,21 +903,24 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
             <p class="pf__difere">São 18 anos atuando na área de emagrecimento. É o único profissional da casa que junta os dois lados da conta: a medicina que
             trata o metabolismo e a fisiologia de quem treina. Foi dessa combinação que nasceu
             o DOC 365.</p>
-            <ul class="pf__itens"><li>Consulta de 1h30, a mais longa da clínica</li><li>Obesidade, metabolismo, lipedema, hipertrofia e performance esportiva</li><li>Tratamentos hormonais masculinos</li><li>Autor de <em>Lipedema — além da estética, um olhar completo</em> e <em>Musculação para iniciantes</em></li></ul>
+            <ul class="pf__itens"><li>Consulta de 1h30, a mais longa da clínica</li><li>Obesidade, metabolismo, lipedema, hipertrofia e performance esportiva</li><li>Menopausa, tireoide e resistência à insulina</li><li>Tratamentos hormonais masculinos e femininos</li><li>Autor de <em>Lipedema — além da estética, um olhar completo</em> e <em>Musculação para iniciantes</em></li></ul>
 
             <!-- Formacao em bloco proprio, nao mais espremida numa linha da lista.
                  Pedido do Dr. Luciano em 20/08: as pos apareciam separadas por
                  ponto na mesma linha e davam impressao de ser uma so. Cada uma
                  em sua linha, com o rotulo "Pós-graduação em" dito uma vez. -->
             <div class="pf__formacao">
-              <p class="pf__formacao-rotulo">Pós-graduação em</p>
+              <p class="pf__formacao-rotulo">
+                <span class="pf__formacao-num">4</span>
+                pós-graduações
+              </p>
               <ul class="pf__formacao-lista">
                 <li>Emagrecimento e metabolismo</li>
                 <li>Metabolômica</li>
                 <li>Medicina funcional integrativa</li>
                 <li>Curso Internacional de Obesidade, pela ABRAN</li>
               </ul>
-              <p class="pf__formacao-extra">Coach Integral Sistêmico &middot; Febracis</p>
+              <p class="pf__formacao-extra">E ainda: Coach Integral Sistêmico, pela Febracis</p>
             </div>
             
             <p class="pf__aviso">Costuma conduzir os casos que já passaram por várias tentativas, os quadros de
@@ -1107,15 +1116,21 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
               <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
             </tr>
             <tr>
+              <!-- Corrigido em 20/08 a pedido do Gustavo: o Dr. Luciano tambem
+                   atende menopausa. A celula dizia "não" e contradizia a propria
+                   pos-graduacao dele em emagrecimento e metabolismo, exibida 200
+                   linhas acima nesta mesma pagina. -->
               <th scope="row">Menopausa, tireoide e resistência à insulina</th>
-              <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
+              <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
               <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
               <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
               <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
             </tr>
             <tr>
+              <!-- Corrigido em 20/08: o Dr. Luciano faz hormonal masculino E
+                   feminino, nao so masculino. -->
               <th scope="row">Tratamentos hormonais</th>
-              <td>Masculinos</td><td>Femininos</td><td>Masculinos</td>
+              <td>Masculinos e femininos</td><td>Femininos</td><td>Masculinos</td>
               <td>&ndash;</td>
             </tr>
 

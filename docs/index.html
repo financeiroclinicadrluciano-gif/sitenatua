@@ -653,8 +653,13 @@ html.js .pf[data-ativo]{opacity:1;visibility:visible;transform:none}
   text-transform:uppercase;color:var(--ouro-claro)}
 .pf__formacao-num{font-family:'Playfair Display',serif;font-size:30px;font-weight:500;
   line-height:1;letter-spacing:0;color:var(--ouro)}
+/* Uma pos por linha em QUALQUER largura, que foi o pedido literal do
+   Dr. Luciano em 20/08. Com auto-fit e minmax de 230px a lista virava duas
+   colunas acima de ~466px, e no desktop "Emagrecimento e metabolismo" dividia
+   a linha com "Metabolomica": exatamente a leitura de "parece uma so" que ele
+   reclamou. Medido em 268px, 478px e 613px de largura de lista. */
 .pf__formacao-lista{margin:0;padding:0;list-style:none;display:grid;gap:6px;
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+  grid-template-columns:1fr}
 .pf__formacao-lista li{position:relative;padding-left:15px;font-size:13px;
   line-height:1.5;color:rgba(252,251,248,.8)}
 .pf__formacao-lista li::before{content:"";position:absolute;left:0;top:.58em;
@@ -665,6 +670,24 @@ html.js .pf[data-ativo]{opacity:1;visibility:visible;transform:none}
 
 .pf__casos{margin-top:14px;padding-top:13px;border-top:1px solid rgba(252,251,248,.13);
   font-size:13px;line-height:1.6;color:rgba(252,251,248,.62);max-width:62ch}
+
+/* Aperto de respiro no desktop, para o botao de agendar caber junto com o card.
+   O bloco de formacao acrescentou 168px ao card em 20/08 e empurrou o botao
+   23px para fora numa janela de 780px, que e o que sobra num MacBook com dock
+   e barra de abas. Nada de conteudo sai, so o espaco entre os blocos encolhe.
+   Medido em 1440x780: card de 739px, botao 23px fora; depois, dentro. */
+@media (min-width:1000px){
+  .pf__difere{margin-top:9px}
+  .pf__itens{margin-top:11px;gap:6px}
+  .pf__formacao{margin-top:11px;padding:10px 14px}
+  .pf__formacao-rotulo{margin-bottom:6px}
+  .pf__formacao-num{font-size:25px}
+  .pf__formacao-lista{gap:4px}
+  .pf__formacao-extra{margin-top:6px;padding-top:6px}
+  .pf__aviso{margin-top:9px;padding:8px 13px}
+  .pf__casos{margin-top:10px;padding-top:9px}
+  .pf__rodape{margin-top:12px}
+}
 .pf__aviso{margin-top:12px;padding:10px 14px;background:rgba(195,161,78,.09);
   border-left:2px solid var(--ouro);font-size:12.5px;line-height:1.55;
   color:rgba(252,251,248,.7);max-width:60ch}
@@ -883,6 +906,76 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
     </a>
   </section>
 
+  <!-- Auxilio de decisao em dobra propria: dentro do comparativo ele ocupava
+       349px e empurrava a tabela para fora da tela. -->
+  <section id="escolher" class="dobra" style="background:var(--fundo-2)" aria-labelledby="t-escolher">
+    <div class="env">
+      <p class="olho" data-reveal>01 &middot; Com quem marcar</p>
+
+      <div class="atalho">
+        <h3 id="t-escolher">Como escolher em 10 segundos</h3>
+        <ul>
+          <li data-medico="vivian"><span>Se o que mais pesa hoje é menopausa, ciclo, hormônio feminino ou emagrecimento depois dos 40</span><b>Dra. Vivian</b></li>
+          <li data-medico="luca"><span>Se o que mais pesa é metabolismo travado, força, definição e desempenho</span><b>Dr. Luca</b></li>
+          <li data-medico="luciano"><span>Se o caso já passou por várias tentativas, lipedema, pós-bariátrica, hormônio masculino, ou você quer o criador do método conduzindo</span><b>Dr. Luciano</b></li>
+          <li data-medico="gislaine"><span>Se o que mais pesa é rotina, estresse, sono e uma abordagem integrativa</span><b>Dra. Gislaine</b></li>
+        </ul>
+      </div>
+
+      <p class="desarma" data-reveal>
+        Escolher a consulta de R$&nbsp;650 não é escolher menos cuidado. É escolher o
+        profissional que conduz o seu tipo de caso.
+        <!-- PENDENTE 6: a frase "e da para comecar com um e mudar depois — a equipe e a
+             mesma" so entra depois de o Dr. Luciano confirmar que a troca e possivel. -->
+      </p>
+    </div>
+  </section>
+
+<section id="reserva" class="dobra escuro" aria-labelledby="t-reserva">
+    <div class="env env--estreito">
+      <p class="olho" data-reveal>02 &middot; Como funciona a reserva</p>
+      <h2 class="titulo" id="t-reserva" data-reveal style="--d:1">Reserve seu horário agora</h2>
+      <p class="reserva__sub" style="--d:2" data-reveal>Clique no botão abaixo e faça a sua reserva</p>
+      <div class="reserva__cta" style="--d:3" data-reveal>
+        <a class="btn btn--ouro" data-reserva-geral href="#">Fazer minha reserva</a>
+      </div>
+
+      <table class="conta" data-reveal>
+        <thead>
+          <tr><th scope="col">Agenda</th><th scope="col">Reserva agora</th><th scope="col">Na consulta</th><th scope="col">Total</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Dr. Luciano</th><td>R$ 350</td><td>R$ 850</td><td class="total">R$ 1.200</td></tr>
+          <tr><th scope="row">Dra. Vivian &middot; Dr. Luca &middot; Dra. Gislaine</th><td>R$ 150</td><td>R$ 500</td><td class="total">R$ 650</td></tr>
+        </tbody>
+      </table>
+
+      <div class="porque">
+        <div data-reveal>
+          <h3>Por que existe reserva</h3>
+          <p>Uma consulta de 1h30 bloqueia um bloco inteiro da agenda médica. Quando o horário
+             é marcado e ninguém aparece, ele não volta para a fila, ele se perde, e outra
+             pessoa que estava esperando ficou sem.</p>
+        </div>
+        <div data-reveal style="--d:1">
+          <h3>Depois do pagamento</h3>
+          <p>Você recebe o contato direto da nossa equipe no WhatsApp para escolher o dia e o
+             horário. A mensagem já vai escrita: é só enviar.</p>
+        </div>
+        <div data-reveal style="--d:2">
+          <h3>Se precisar mudar a data</h3>
+          <p>Fale com a nossa equipe pelo mesmo WhatsApp em que você marcou. Quanto antes você
+             avisar, mais chance de encaixar outro horário, e de liberar o seu para quem está
+             na espera.</p>
+        </div>
+      </div>
+      <!-- NAO EXISTE politica de remarcacao formal (confirmado pelo Gustavo em 11/08).
+           Por isso a pagina nao promete remarcacao nem publica um "nao remarcamos": ela
+           manda a pessoa falar com a equipe, que e o que de fato acontece hoje. Se a
+           clinica definir uma regra com prazo, ela entra aqui e na FAQ 2. -->
+    </div>
+  </section>
+
   <!-- ============ OS QUATRO PROFISSIONAIS ============
        Uma dobra só: a tela fica parada e a rolagem troca o profissional. Cada
        um ocupa a tela inteira no formato deitado, então nenhum texto precisa
@@ -890,7 +983,7 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
   <section id="profissionais" class="dobra" aria-labelledby="t-prof">
     <div class="env pf__env">
       <div class="pf__head">
-        <p class="olho" data-reveal>01 &middot; Quem vai te atender</p>
+        <p class="olho" data-reveal>03 &middot; Quem vai te atender</p>
         <h2 class="titulo" id="t-prof" data-reveal style="--d:1">Quem conduz o seu Plano DOC 365</h2>
       </div>
       <div class="pf__palco">
@@ -957,9 +1050,15 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
             <h3 class="titulo pf__nome">Dr. Luca Bonaccorsi</h3>
             <!-- PENDENTE: o Dr. Luciano pediu em 20/08 para colocar o CRM do
                  Dr. Luca, mas mandou so o dele (CRM/PR 45049). Quando o numero
-                 chegar, criar aqui um <p class="pf__crm"> igual ao do card do
-                 Dr. Luciano, e preencher tambem a celula dele na linha
-                 "Formação" da tabela comparativa. Sao os dois unicos lugares.
+                 chegar, sao TRES lugares, nao dois:
+                   1. aqui, um <p class="pf__crm"> igual ao do card do Dr. Luciano
+                   2. a celula dele na linha "Formação" da tabela comparativa,
+                      hoje so "Médico"
+                   3. o cabecalho da coluna dele na tabela, hoje so "Médico",
+                      enquanto a Dra. Vivian exibe "Ginecologista · CRM/PR 28.891"
+                      no mesmo lugar
+                 O terceiro e o que passa despercebido, e e o mais visivel de
+                 todos: e a comparacao lado a lado.
 
                  Sem numero de exemplo de proposito: registro profissional
                  inventado, mesmo comentado, fica no codigo-fonte publico e um
@@ -1005,7 +1104,7 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
 
 <section id="comparativo" class="dobra" style="background:var(--creme)" aria-labelledby="t-comp">
     <div class="env">
-      <p class="olho" data-reveal>02 &middot; Escolha do profissional</p>
+      <p class="olho" data-reveal>04 &middot; Compare lado a lado</p>
       <h2 class="titulo" id="t-comp" data-reveal style="--d:1">Com quem fazer a primeira consulta</h2>
       <p class="lede" style="margin-top:26px;--d:2" data-reveal>
         Os quatro aplicam o mesmo plano, na mesma clínica, com a mesma equipe por trás.
@@ -1204,79 +1303,10 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
       </div>
   </section>
 
-  <!-- Auxilio de decisao em dobra propria: dentro do comparativo ele ocupava
-       349px e empurrava a tabela para fora da tela. -->
-  <section id="escolher" class="dobra" style="background:var(--fundo-2)" aria-label="Como escolher em 10 segundos">
-    <div class="env">
-
-      <div class="atalho">
-        <h3>Como escolher em 10 segundos</h3>
-        <ul>
-          <li data-medico="vivian"><span>Se o que mais pesa hoje é menopausa, ciclo, hormônio feminino ou emagrecimento depois dos 40</span><b>Dra. Vivian</b></li>
-          <li data-medico="luca"><span>Se o que mais pesa é metabolismo travado, força, definição e desempenho</span><b>Dr. Luca</b></li>
-          <li data-medico="luciano"><span>Se o caso já passou por várias tentativas, lipedema, pós-bariátrica, hormônio masculino, ou você quer o criador do método conduzindo</span><b>Dr. Luciano</b></li>
-          <li data-medico="gislaine"><span>Se o que mais pesa é rotina, estresse, sono e uma abordagem integrativa</span><b>Dra. Gislaine</b></li>
-        </ul>
-      </div>
-
-      <p class="desarma" data-reveal>
-        Escolher a consulta de R$&nbsp;650 não é escolher menos cuidado. É escolher o
-        profissional que conduz o seu tipo de caso.
-        <!-- PENDENTE 6: a frase "e da para comecar com um e mudar depois — a equipe e a
-             mesma" so entra depois de o Dr. Luciano confirmar que a troca e possivel. -->
-      </p>
-    </div>
-  </section>
-
-<section id="reserva" class="dobra escuro" aria-labelledby="t-reserva">
-    <div class="env env--estreito">
-      <p class="olho" data-reveal>03 &middot; Como funciona a reserva</p>
-      <h2 class="titulo" id="t-reserva" data-reveal style="--d:1">Reserve seu horário agora</h2>
-      <p class="reserva__sub" style="--d:2" data-reveal>Clique no botão abaixo e faça a sua reserva</p>
-      <div class="reserva__cta" style="--d:3" data-reveal>
-        <a class="btn btn--ouro" data-reserva-geral href="#">Fazer minha reserva</a>
-      </div>
-
-      <table class="conta" data-reveal>
-        <thead>
-          <tr><th scope="col">Agenda</th><th scope="col">Reserva agora</th><th scope="col">Na consulta</th><th scope="col">Total</th></tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">Dr. Luciano</th><td>R$ 350</td><td>R$ 850</td><td class="total">R$ 1.200</td></tr>
-          <tr><th scope="row">Dra. Vivian &middot; Dr. Luca &middot; Dra. Gislaine</th><td>R$ 150</td><td>R$ 500</td><td class="total">R$ 650</td></tr>
-        </tbody>
-      </table>
-
-      <div class="porque">
-        <div data-reveal>
-          <h3>Por que existe reserva</h3>
-          <p>Uma consulta de 1h30 bloqueia um bloco inteiro da agenda médica. Quando o horário
-             é marcado e ninguém aparece, ele não volta para a fila, ele se perde, e outra
-             pessoa que estava esperando ficou sem.</p>
-        </div>
-        <div data-reveal style="--d:1">
-          <h3>Depois do pagamento</h3>
-          <p>Você recebe o contato direto da nossa equipe no WhatsApp para escolher o dia e o
-             horário. A mensagem já vai escrita: é só enviar.</p>
-        </div>
-        <div data-reveal style="--d:2">
-          <h3>Se precisar mudar a data</h3>
-          <p>Fale com a nossa equipe pelo mesmo WhatsApp em que você marcou. Quanto antes você
-             avisar, mais chance de encaixar outro horário, e de liberar o seu para quem está
-             na espera.</p>
-        </div>
-      </div>
-      <!-- NAO EXISTE politica de remarcacao formal (confirmado pelo Gustavo em 11/08).
-           Por isso a pagina nao promete remarcacao nem publica um "nao remarcamos": ela
-           manda a pessoa falar com a equipe, que e o que de fato acontece hoje. Se a
-           clinica definir uma regra com prazo, ela entra aqui e na FAQ 2. -->
-    </div>
-  </section>
-
   <!-- ============ VÍDEO · POR QUE A ABORDAGEM É DIFERENTE ============ -->
   <section id="video" class="dobra" style="background:var(--fundo-2)" aria-labelledby="t-video">
     <div class="env env--estreito">
-      <p class="olho" data-reveal>04 &middot; Direto do Dr. Luciano</p>
+      <p class="olho" data-reveal>05 &middot; Direto do Dr. Luciano</p>
       <h2 class="titulo" id="t-video" data-reveal style="--d:1">Por que a nossa abordagem é diferente de tudo que você já viu</h2>
       <button type="button" class="video" data-reveal style="--d:2"
               data-video="https://player-vz-cc72507e-ecc.tv.pandavideo.com.br/embed/?v=b5568006-5017-48fd-85f4-334a9424dbbd"
@@ -1289,7 +1319,7 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
 
 <section id="faq" class="dobra" aria-labelledby="t-faq">
     <div class="env env--estreito">
-      <p class="olho" data-reveal>05 &middot; Antes de você decidir</p>
+      <p class="olho" data-reveal>06 &middot; Antes de você decidir</p>
       <h2 class="titulo" id="t-faq" data-reveal style="--d:1">Perguntas frequentes</h2>
 
       <div class="faq">
@@ -1383,6 +1413,7 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
       </div>
     </div>
   </section>
+
 
 </main>
 

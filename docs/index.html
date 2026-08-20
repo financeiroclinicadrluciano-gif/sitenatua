@@ -631,6 +631,30 @@ html.js .pf[data-ativo]{opacity:1;visibility:visible;transform:none}
 .pf__papel{font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
   color:var(--ouro);margin-bottom:10px}
 .pf__nome{font-size:clamp(1.5rem,1.1rem+1.3vw,2.15rem);line-height:1.1;color:#FCFBF8}
+/* Retrato pequeno ao lado do nome, SO no celular.
+   A foto grande fica no topo do card, e o bloco de texto tem 1.056px de
+   altura numa tela de 787px uteis: quem esta lendo o nome, o CRM e a formacao
+   ja rolou a foto para fora da tela e nao sabe de quem esta lendo. Usa o mesmo
+   arquivo da foto grande, entao o navegador reaproveita o cache e o custo de
+   rede e zero. No desktop nao aparece: la a foto fica ao lado, sempre visivel. */
+.pf__avatar{display:none}
+/* O header e fixo. Sem scroll-margin, qualquer rolagem programatica ou ancora
+   que mire o card para exatamente atras dele, e o topo do conteudo some. */
+.pf,.pf__txt{scroll-margin-top:calc(var(--topo-h,57px) + 14px)}
+@media(max-width:899px){
+  .pf__avatar{
+    display:block;width:60px;height:60px;border-radius:50%;
+    object-fit:cover;object-position:center 15%;
+    border:1px solid rgba(195,161,78,.45);
+    margin-bottom:10px;
+    /* O header e fixo e tem 57px. Sem esta margem o retrato encostava nele e
+       aparecia com o topo cortado, porque a dobra dos profissionais prende a
+       rolagem e o card pode parar exatamente nessa altura. Medido em 390px:
+       o retrato ficava em top 45, abaixo dos 57px do header. */
+    margin-top:8px;
+  }
+}
+
 .pf__crm{margin-top:7px;font-size:12.5px;color:rgba(252,251,248,.58)}
 .pf__difere{margin-top:14px;font-size:14.5px;line-height:1.7;color:rgba(252,251,248,.82);max-width:60ch}
 .pf__itens{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:8px;
@@ -1051,6 +1075,7 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
         <article class="pf" data-slide="0" data-ativo>
           <figure class="pf__foto"><img src="assets/dr-luciano.webp" alt="Dr. Luciano Alves Neves" width="900" height="1600" loading="eager" decoding="async"></figure>
           <div class="pf__txt">
+            <img class="pf__avatar" src="assets/dr-luciano.webp" alt="" aria-hidden="true" width="900" height="1600" loading="lazy" decoding="async">
             <p class="pf__papel">O criador do Plano DOC 365</p>
             <h3 class="titulo pf__nome">Dr. Luciano Alves Neves</h3>
             <p class="pf__crm">Médico &middot; CRM/PR 45049 &middot; UFPR<br>Profissional de Educação Física &middot; CREF/PR 025507</p>
@@ -1088,6 +1113,7 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
         <article class="pf" data-slide="1">
           <figure class="pf__foto"><img src="assets/dra-vivian.webp" alt="Dra. Vivian Gumy" width="900" height="1600" loading="lazy" decoding="async"></figure>
           <div class="pf__txt">
+            <img class="pf__avatar" src="assets/dra-vivian.webp" alt="" aria-hidden="true" width="900" height="1600" loading="lazy" decoding="async">
             <p class="pf__papel">Responsável técnica &middot; Aplicadora do DOC 365</p>
             <h3 class="titulo pf__nome">Dra. Vivian Gumy</h3>
             <p class="pf__crm">Ginecologista &middot; CRM/PR 28.891 &middot; Responsável técnica da clínica</p>
@@ -1107,6 +1133,7 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
         <article class="pf" data-slide="2">
           <figure class="pf__foto"><img src="assets/dr-luca.webp" alt="Dr. Luca Bonaccorsi" width="900" height="1600" loading="lazy" decoding="async"></figure>
           <div class="pf__txt">
+            <img class="pf__avatar" src="assets/dr-luca.webp" alt="" aria-hidden="true" width="900" height="1600" loading="lazy" decoding="async">
             <p class="pf__papel">Aplicador do DOC 365</p>
             <h3 class="titulo pf__nome">Dr. Luca Bonaccorsi</h3>
             <!-- CRM informado pelo Gustavo em 20/08, depois de pedir ao proprio
@@ -1130,6 +1157,7 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
         <article class="pf" data-slide="3">
           <figure class="pf__foto"><img src="assets/dra-gislaine.webp" alt="Dra. Gislaine Szostak" width="900" height="1600" loading="lazy" decoding="async"></figure>
           <div class="pf__txt">
+            <img class="pf__avatar" src="assets/dra-gislaine.webp" alt="" aria-hidden="true" width="900" height="1600" loading="lazy" decoding="async">
             <p class="pf__papel">Naturóloga &middot; Coach Integral Sistêmica &middot; Aplicadora do Plano DOC 365</p>
             <h3 class="titulo pf__nome">Dra. Gislaine Szostak</h3>
             

@@ -431,6 +431,10 @@ table.comparativo{width:100%;min-width:680px;border-collapse:collapse;font-size:
   .cartao__linha{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:baseline;
     padding:12px 24px;border-bottom:1px solid var(--creme-escuro)}
   .cartao__linha--casos{grid-template-columns:1fr}
+  /* Linha de texto longo: rotulo em cima, valor embaixo, os dois alinhados a
+     esquerda. Evita o rotulo quebrar palavra a palavra numa coluna estreita. */
+  .cartao__linha--longa{grid-template-columns:1fr;gap:4px}
+  .cartao__linha--longa .cartao__valor{text-align:left;line-height:1.6}
   .cartao__linha--casos .cartao__rotulo{position:relative;padding-left:20px}
   .cartao__linha--casos .cartao__rotulo::before{content:"";position:absolute;left:0;top:7px;
     width:6px;height:6px;border-radius:50%;background:var(--ouro);
@@ -1584,6 +1588,21 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
         var extra = "";
         if (tr.classList.contains("casos")) extra += " cartao__linha--casos";
         if (tr.classList.contains("valor")) extra += " cartao__linha--valor";
+        /* Rotulo e valor dividem a mesma linha em duas colunas. Quando os dois
+           sao longos, a coluna do rotulo espreme e ele quebra palavra a palavra,
+           com o valor desalinhado do lado. Nesses casos a linha empilha.
+
+           Sao duas condicoes porque uma so nao cobre: valor muito longo espreme
+           qualquer rotulo, e rotulo longo quebra mesmo com valor medio. Medido
+           em 20/08 no iPhone: "Área de atuação" com valor de 29 caracteres
+           passava na regra do valor e ainda assim quebrava em duas linhas. */
+        var textoValor = (celula.textContent || "").trim();
+        var textoRotulo = rotulo.textContent.trim();
+        var precisaEmpilhar = textoValor.length > 34 ||
+                              (textoRotulo.length > 12 && textoValor.length > 20);
+        if (!/casos|valor/.test(extra) && precisaEmpilhar) {
+          extra += " cartao__linha--longa";
+        }
         html += '<div class="cartao__linha' + extra + '"><span class="cartao__rotulo">' +
           rotulo.textContent.trim() + '</span><span class="cartao__valor">' +
           celula.innerHTML + "</span></div>";

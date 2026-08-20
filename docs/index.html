@@ -152,6 +152,21 @@ h3.titulo{font-size:clamp(1.25rem,1.08rem+.7vw,1.5rem);font-weight:600}
 .hero__link:hover{color:#FCFBF8;border-bottom-color:var(--ouro)}
 .hero__confianca{margin-top:36px;padding-top:24px;border-top:1px solid rgba(252,251,248,.12);
   font-size:12px;letter-spacing:.06em;color:rgba(252,251,248,.55);max-width:62ch;line-height:2}
+
+/* Filtro financeiro. Fica na primeira dobra de proposito: o custo de quem
+   descobre o valor so no WhatsApp e uma conversa inteira do time gasta com
+   quem nunca ia fechar. Quem nao quer particular sai aqui, e tudo bem. */
+.hero__filtro{display:inline-flex;align-items:center;gap:10px;margin-top:26px;
+  padding:9px 16px 9px 13px;border:1px solid rgba(200,168,96,.4);border-radius:999px;
+  background:rgba(200,168,96,.09);color:var(--ouro-claro);
+  font-size:12px;font-weight:600;letter-spacing:.05em;line-height:1.5;max-width:100%}
+.hero__filtro::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;
+  background:var(--ouro)}
+.hero__filtro b{font-weight:700;color:var(--ouro-claro)}
+@media (max-width:640px){
+  .hero__filtro{font-size:11.5px;padding:8px 13px 8px 11px;border-radius:14px;align-items:flex-start}
+  .hero__filtro::before{margin-top:6px}
+}
 .hero__confianca .contar{font-family:'Playfair Display',serif;font-size:13px;color:var(--ouro-claro)}
 
 /* Indicação sutil de rolagem abaixo da dobra */
@@ -828,6 +843,9 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
       <h1 class="titulo" id="t-hero">
         <span class="w" style="--i:0">Conheça</span> <span class="w" style="--i:1">a</span> <span class="w" style="--i:2">Equipe</span> <span class="w" style="--i:3">da</span> <em class="italico"><span class="w" style="--i:4">Natuá</span> <span class="w" style="--i:5">MedSpa</span></em>
       </h1>
+      <p class="hero__filtro" data-reveal style="--d:2">
+        <span><b>Atendimento particular e exclusivo.</b> Não atendemos planos de saúde. Consultas a partir de R$ 650.</span>
+      </p>
       <p class="hero__confianca" data-reveal style="--d:3">
         Dr. Luciano Alves Neves &middot; CRM/PR 45049 &middot; Mais de 17 anos de clínica &middot; Mais de <span class="contar" data-alvo="3000">3.000</span> pacientes acompanhados &middot; Clínica em Curitiba
       </p>
@@ -965,11 +983,32 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
             <tr class="grupo"><td colspan="5">Quem é e quanto tempo tem com você</td></tr>
 
             <tr>
-              <th scope="row">Especialidade</th>
+              <th scope="row">Área de atuação</th>
               <td>Emagrecimento, metabolismo e medicina integrativa</td>
               <td>Ginecologia e saúde da mulher</td>
               <td>Emagrecimento e saúde metabólica</td>
               <td>Naturologia, Medicina Tradicional Chinesa e acupuntura</td>
+            </tr>
+            <tr>
+              <th scope="row">Formação</th>
+              <td>Médico &middot; CRM/PR 45049</td>
+              <td>Médica &middot; CRM/PR 28.891</td>
+              <td>Médico</td>
+              <td>Naturóloga &middot; não é médica</td>
+            </tr>
+            <tr>
+              <th scope="row">Prescreve medicamento</th>
+              <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
+              <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
+              <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
+              <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não, apenas os médicos prescrevem medicamento</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Prescreve terapias naturais</th>
+              <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
+              <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
+              <td><span class="nao" aria-hidden="true">&ndash;</span><span class="so-leitor">não</span></td>
+              <td><span class="sim" aria-hidden="true">&check;</span><span class="so-leitor">sim</span></td>
             </tr>
             <tr>
               <th scope="row">Duração da primeira consulta</th>
@@ -1274,10 +1313,10 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
     <div class="env">
       <div class="chamada" data-reveal>
         <p class="olho">Ainda com dúvidas?</p>
-        <h2 class="titulo" id="t-duvida">Faça agora uma ligação para tirar todas as suas dúvidas com o nosso time</h2>
-        <p class="chamada__texto">Se a dúvida é específica sobre o seu caso, converse agora com o nosso time antes de escolher com quem marcar.</p>
+        <h2 class="titulo" id="t-duvida">Peça uma ligação e tire todas as suas dúvidas com o nosso time</h2>
+        <p class="chamada__texto">Se a dúvida é específica sobre o seu caso, peça uma ligação pelo WhatsApp e o nosso time chama você antes de escolher com quem marcar.</p>
         <div class="chamada__acoes">
-          <a class="btn btn--ouro" href="tel:+5541995474511">Ligar agora</a>
+          <a class="btn btn--ouro" data-ligacao href="#">Pedir uma ligação</a>
         </div>
         <p class="miudo" style="margin-top:28px">É uma conversa de orientação sobre o agendamento. Não é consulta, não é avaliação clínica e ninguém vai dar conduta médica por lá.</p>
       </div>
@@ -1340,6 +1379,17 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
   ligarBotoesReserva();
   // Exposto para os cartoes mobile (gerados depois) herdarem os destinos.
   window.__ligarBotoesReserva = ligarBotoesReserva;
+
+  /* "Pedir uma ligacao": abre o WhatsApp com o pedido escrito, em vez de
+     discar. No desktop o tel: nao fazia nada, e ligacao nao deixa rastro. */
+  var pedirLigacao = document.querySelector("[data-ligacao]");
+  if (pedirLigacao) {
+    pedirLigacao.href = whatsapp("Olá! Vim da página de consultas do site e queria " +
+      "pedir uma ligação para tirar dúvidas antes de escolher com quem marcar. " +
+      "Pode me ligar neste número?");
+    pedirLigacao.target = "_blank";
+    pedirLigacao.rel = "noopener";
+  }
 
   var reservaGeral = document.querySelector("[data-reserva-geral]");
   if (reservaGeral) {
@@ -1713,6 +1763,43 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
 (function () {
   "use strict";
   var CHAVE = "bio8d:origem";
+  var INICIO = Date.now();   /* usado para medir quanto tempo o MQL leu antes de clicar */
+
+  /* Fica true no momento em que a LINHA DE PREÇO aparece na tela, e nao volta
+     mais. E o que separa "clicou tendo visto o preco" de "clicou do topo".
+
+     Tres armadilhas medidas em 20/08, cada uma faria o marcador nunca ligar:
+
+     1. Observar a seção `#comparativo` nao serve: ela tem 7.467px de altura
+        numa tela de 844px, entao threshold em porcentagem do elemento fica
+        matematicamente inalcancavel.
+     2. Observar o `<th>` da linha tambem nao: no celular a tabela vira cartoes
+        e o cabecalho de linha fica com area zero, e area zero nunca intersecta.
+     3. IntersectionObserver nao dispara em aba oculta. Isso nao atrapalha o
+        paciente, que esta olhando a tela, mas significa que o mecanismo nao
+        pode ser verificado por ninguem que teste fora de uma aba em foco. Um
+        marcador que so funciona quando ninguem esta medindo e um marcador que
+        vai falhar em silencio.
+
+     Por isso aqui nao ha observer: a profundidade maxima de rolagem e guardada
+     e comparada com a posicao absoluta do primeiro preco. E aritmetica, funciona
+     em qualquer navegador, com a aba em foco ou nao, e da para provar. */
+  var MAIOR_ALCANCE = 0;
+  function marcarAlcance() {
+    var fundo = (window.scrollY || window.pageYOffset || 0) + window.innerHeight;
+    if (fundo > MAIOR_ALCANCE) MAIOR_ALCANCE = fundo;
+  }
+  window.addEventListener("scroll", marcarAlcance, { passive: true });
+  window.addEventListener("resize", marcarAlcance, { passive: true });
+  marcarAlcance();
+
+  function viuOsValores() {
+    var p = document.querySelector(".preco");
+    if (!p) return false;
+    marcarAlcance();
+    var topoAbsoluto = p.getBoundingClientRect().top + (window.scrollY || window.pageYOffset || 0);
+    return MAIOR_ALCANCE >= topoAbsoluto;
+  }
 
   function classificarReferrer(ref) {
     if (!ref) return { fonte: "direto", meio: "nenhum" };
@@ -1775,10 +1862,39 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
     var texto = (a.textContent || "").trim().slice(0, 44);
 
     if (/wa\.me|whatsapp/.test(href) || a.hasAttribute("data-reserva")) {
+      var quem = profissionalDe(a);
       evento("consultas_whatsapp", {
-        profissional: profissionalDe(a), rotulo: texto,
+        profissional: quem, rotulo: texto,
         destino: href.slice(0, 90)
       });
+
+      /* ── MQL ──────────────────────────────────────────────────────────────
+         A regra nova, decidida na reuniao de 20/08: quem sai desta pagina para
+         o WhatsApp ja viu que o atendimento e particular, viu o valor da
+         consulta, viu que existe reserva e escolheu o profissional. Por isso o
+         contato nasce qualificado, e o MQL passa a ser medido AQUI, no clique,
+         e nao mais pelo cargo declarado num formulario.
+
+         `evento()` ja cuida do dataLayer e do GA4. O que falta aqui e o Lead do
+         pixel, que e o que a Meta usa para achar mais gente parecida: sem ele a
+         campanha continua otimizando para o lead antigo, o do formulario.
+
+         `viu_valores` diz se a pessoa chegou de fato ate a tabela de preco antes
+         de clicar. Clique no topo da pagina e um MQL mais fraco que clique depois
+         do preco, e sem esse campo os dois somem na mesma media. */
+      var dadosMql = {
+        profissional: quem,
+        viu_valores: viuOsValores(),
+        segundos_na_pagina: Math.round((Date.now() - INICIO) / 1000),
+        rotulo: texto
+      };
+      evento("natua_mql", dadosMql);
+      if (typeof window.fbq === "function") {
+        window.fbq("track", "Lead", {
+          content_name: "consultas_whatsapp",
+          content_category: quem || "sem profissional"
+        });
+      }
       return;
     }
     if (/^#/.test(href)) { evento("consultas_ancora", { alvo: href, rotulo: texto }); return; }

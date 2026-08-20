@@ -639,6 +639,24 @@ html.js .pf[data-ativo]{opacity:1;visibility:visible;transform:none}
   font-size:13.5px;line-height:1.58;color:rgba(252,251,248,.72)}
 .pf__itens li::before{content:"";position:absolute;left:0;top:.6em;
   width:5px;height:5px;border-radius:50%;background:var(--ouro)}
+/* Bloco de formacao. Fica dentro de uma moldura discreta porque e uma lista de
+   titulos, nao mais um item entre outros: solta no meio da lista, a formacao
+   lia como se fosse uma coisa so. No celular a lista vira uma coluna; da largura
+   de tablet para cima ela usa duas, para o bloco nao virar uma escada. */
+.pf__formacao{margin-top:16px;padding:13px 15px;border-radius:10px;
+  border:1px solid rgba(195,161,78,.24);background:rgba(195,161,78,.055)}
+.pf__formacao-rotulo{margin:0 0 8px;font-size:10px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ouro-claro)}
+.pf__formacao-lista{margin:0;padding:0;list-style:none;display:grid;gap:6px;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.pf__formacao-lista li{position:relative;padding-left:15px;font-size:13px;
+  line-height:1.5;color:rgba(252,251,248,.8)}
+.pf__formacao-lista li::before{content:"";position:absolute;left:0;top:.58em;
+  width:4px;height:4px;border-radius:50%;background:var(--ouro)}
+.pf__formacao-extra{margin:9px 0 0;padding-top:9px;
+  border-top:1px solid rgba(195,161,78,.18);
+  font-size:12.5px;line-height:1.5;color:rgba(252,251,248,.68)}
+
 .pf__casos{margin-top:14px;padding-top:13px;border-top:1px solid rgba(252,251,248,.13);
   font-size:13px;line-height:1.6;color:rgba(252,251,248,.62);max-width:62ch}
 .pf__aviso{margin-top:12px;padding:10px 14px;background:rgba(195,161,78,.09);
@@ -851,7 +869,7 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
         <span><b>Atendimento particular e exclusivo.</b> Não atendemos planos de saúde. Consultas a partir de R$ 650.</span>
       </p>
       <p class="hero__confianca" data-reveal style="--d:3">
-        Dr. Luciano Alves Neves &middot; CRM/PR 45049 &middot; Mais de 17 anos de clínica &middot; Mais de <span class="contar" data-alvo="3000">3.000</span> pacientes acompanhados &middot; Clínica em Curitiba
+        Dr. Luciano Alves Neves &middot; CRM/PR 45049 &middot; 18 anos atuando na área de emagrecimento &middot; Mais de <span class="contar" data-alvo="3000">3.000</span> pacientes acompanhados &middot; Clínica em Curitiba
       </p>
     </div>
     <a class="hero__cue" href="#profissionais" aria-label="Role para conhecer os profissionais">
@@ -875,11 +893,26 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
           <div class="pf__txt">
             <p class="pf__papel">O criador do Plano DOC 365</p>
             <h3 class="titulo pf__nome">Dr. Luciano Alves Neves</h3>
-            <p class="pf__crm">Médico CRM/PR 45049 &middot; Educador Físico CREF/PR 025507</p>
-            <p class="pf__difere">São mais de 17 anos rodando a própria clínica. É o único profissional da casa que junta os dois lados da conta: a medicina que
+            <p class="pf__crm">Médico &middot; CRM/PR 45049 &middot; UFPR<br>Profissional de Educação Física &middot; CREF/PR 025507</p>
+            <p class="pf__difere">São 18 anos atuando na área de emagrecimento. É o único profissional da casa que junta os dois lados da conta: a medicina que
             trata o metabolismo e a fisiologia de quem treina. Foi dessa combinação que nasceu
             o DOC 365.</p>
-            <ul class="pf__itens"><li>Consulta de 1h30, a mais longa da clínica</li><li>Obesidade, metabolismo, lipedema, hipertrofia e performance esportiva</li><li>Tratamentos hormonais masculinos</li><li>Pós em emagrecimento e metabolismo &middot; metabolômica &middot; medicina funcional integrativa &middot; Curso Internacional de Obesidade (ABRAN)</li><li>Autor de <em>Lipedema — além da estética, um olhar completo</em> e <em>Musculação para iniciantes</em></li></ul>
+            <ul class="pf__itens"><li>Consulta de 1h30, a mais longa da clínica</li><li>Obesidade, metabolismo, lipedema, hipertrofia e performance esportiva</li><li>Tratamentos hormonais masculinos</li><li>Autor de <em>Lipedema — além da estética, um olhar completo</em> e <em>Musculação para iniciantes</em></li></ul>
+
+            <!-- Formacao em bloco proprio, nao mais espremida numa linha da lista.
+                 Pedido do Dr. Luciano em 20/08: as pos apareciam separadas por
+                 ponto na mesma linha e davam impressao de ser uma so. Cada uma
+                 em sua linha, com o rotulo "Pós-graduação em" dito uma vez. -->
+            <div class="pf__formacao">
+              <p class="pf__formacao-rotulo">Pós-graduação em</p>
+              <ul class="pf__formacao-lista">
+                <li>Emagrecimento e metabolismo</li>
+                <li>Metabolômica</li>
+                <li>Medicina funcional integrativa</li>
+                <li>Curso Internacional de Obesidade, pela ABRAN</li>
+              </ul>
+              <p class="pf__formacao-extra">Coach Integral Sistêmico &middot; Febracis</p>
+            </div>
             
             <p class="pf__aviso">Costuma conduzir os casos que já passaram por várias tentativas, os quadros de
             lipedema, pós-bariátrica e quem quer resultado com performance junto.</p>
@@ -892,9 +925,9 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
         <article class="pf" data-slide="1">
           <figure class="pf__foto"><img src="assets/dra-vivian.webp" alt="Dra. Vivian Gumy" width="900" height="1600" loading="lazy" decoding="async"></figure>
           <div class="pf__txt">
-            <p class="pf__papel">Ginecologista &middot; CRM/PR 28.891 &middot; Aplicadora do DOC 365</p>
+            <p class="pf__papel">Responsável técnica &middot; Aplicadora do DOC 365</p>
             <h3 class="titulo pf__nome">Dra. Vivian Gumy</h3>
-            <p class="pf__crm">Ginecologista &middot; CRM/PR 28.891</p>
+            <p class="pf__crm">Ginecologista &middot; CRM/PR 28.891 &middot; Responsável técnica da clínica</p>
             <p class="pf__difere">Ela olha o emagrecimento pela porta que a maioria das clínicas ignora: o hormônio
               feminino. Menopausa, ciclo, tireoide e resistência à insulina não são um detalhe
               do caso, muitas vezes são o caso.</p>
@@ -913,7 +946,12 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
           <div class="pf__txt">
             <p class="pf__papel">Aplicador do DOC 365</p>
             <h3 class="titulo pf__nome">Dr. Luca Bonaccorsi</h3>
-            
+            <!-- PENDENTE: o Dr. Luciano pediu em 20/08 para colocar o CRM do
+                 Dr. Luca, mas mandou so o dele (CRM/PR 45049). Assim que o
+                 numero chegar, entra aqui e tambem na linha "Formação" da
+                 tabela comparativa. Sao os dois unicos lugares.
+                 <p class="pf__crm">Médico &middot; CRM/PR 00000</p>            -->
+
             <p class="pf__difere">Para ele, a balança é o começo da conversa, não o fim dela. Nas palavras dele:
               <em>“Seu resultado não precisa terminar na balança. Ele pode continuar em força,
               definição e desempenho.”</em></p>
@@ -995,8 +1033,8 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
             </tr>
             <tr>
               <th scope="row">Formação</th>
-              <td>Médico &middot; CRM/PR 45049</td>
-              <td>Médica &middot; CRM/PR 28.891</td>
+              <td>Médico pela UFPR &middot; CRM/PR 45049<br>Profissional de Educação Física &middot; CREF/PR 025507</td>
+              <td>Médica &middot; CRM/PR 28.891<br>Responsável técnica da clínica</td>
               <td>Médico</td>
               <td>Naturóloga &middot; não é médica</td>
             </tr>

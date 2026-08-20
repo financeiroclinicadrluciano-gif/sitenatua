@@ -677,27 +677,39 @@ html.js .pf[data-ativo]{opacity:1;visibility:visible;transform:none}
    e barra de abas. Nada de conteudo sai, so o espaco entre os blocos encolhe.
    Medido em 1440x780: card de 739px, botao 23px fora; depois, dentro. */
 @media (min-width:1000px){
-  /* O PREÇO E O BOTÃO VÊM ANTES DA FORMAÇÃO no desktop.
-     O bloco de formacao acrescentou 168px ao card em 20/08 e empurrou o botao
-     de agendar para fora da tela. Apertar espaco sozinho nao resolvia: numa
-     janela de 668px, que e o que sobra num MacBook com dock e barra de abas,
-     faltavam 52px. Trocando a ordem, o botao sobe o bloco inteiro de uma vez e
-     a formacao fica logo abaixo, ainda no mesmo card. Ninguem perde conteudo e
-     quem so quer agendar nao precisa rolar os titulos primeiro. */
-  .pf__txt{display:flex;flex-direction:column}
-  .pf__papel{order:1} .pf__nome{order:2} .pf__crm{order:3} .pf__difere{order:4}
-  .pf__itens{order:5} .pf__aviso{order:6} .pf__casos{order:6}
-  .pf__rodape{order:7}
-  .pf__formacao{order:8;margin-top:14px;padding:10px 14px}
+  /* O CARD INTEIRO CABE NA PRIMEIRA DOBRA, incluindo a formacao.
+     Pedido do Gustavo em 20/08, depois de duas tentativas minhas que nao
+     bastaram: a primeira apertou espaco e ganhou 41px, a segunda desceu a
+     formacao para o fim e resolveu o botao mas deixou os titulos cortados.
+
+     O que faltava era largura, nao aperto. O lado do texto tem 670px e usava
+     tudo numa coluna so. Aqui a lista de topicos e o bloco de formacao passam
+     a dividir a mesma LINHA do grid, lado a lado, e a altura da linha vira a
+     do maior dos dois em vez da soma.
+
+     As linhas sao fixadas na mao de proposito. Com posicionamento automatico o
+     grid empurrava a formacao para a linha seguinte, porque ela vem depois no
+     HTML, e o card voltava a 709px.
+
+     Medido em 1440x668, que e o que sobra num MacBook com dock e abas:
+     card de 562px numa dobra util de 568px, e a folga ate o fim do conteudo
+     ficou em 39, 71, 171 e 143px nos quatro cards. Antes: 668px. */
+  .pf__txt{display:grid;grid-template-columns:1fr 1fr;column-gap:18px;align-content:start}
+  .pf__papel{grid-row:1;grid-column:1/-1}
+  .pf__nome{grid-row:2;grid-column:1/-1}
+  .pf__crm{grid-row:3;grid-column:1/-1}
+  .pf__difere{grid-row:4;grid-column:1/-1;margin-top:7px}
+  .pf__itens{grid-row:5;grid-column:1;grid-template-columns:1fr;align-self:start;
+    margin-top:10px;gap:6px}
+  .pf__formacao{grid-row:5;grid-column:2;align-self:start;margin-top:10px;padding:10px 14px}
+  .pf__aviso,.pf__casos{grid-row:6;grid-column:1/-1;margin-top:9px}
+  .pf__rodape{grid-row:7;grid-column:1/-1;margin-top:11px}
   .pf__formacao-rotulo{margin-bottom:6px}
   .pf__formacao-num{font-size:25px}
   .pf__formacao-lista{gap:4px}
   .pf__formacao-extra{margin-top:6px;padding-top:6px}
-  .pf__difere{margin-top:9px}
-  .pf__itens{margin-top:11px;gap:6px}
-  .pf__aviso{margin-top:9px;padding:8px 13px}
-  .pf__casos{margin-top:10px;padding-top:9px}
-  .pf__rodape{margin-top:12px}
+  .pf__aviso{padding:8px 13px}
+  .pf__casos{padding-top:9px}
 }
 
 /* Janela baixa: notebook com dock, barra de abas e barra de favoritos abertos.

@@ -2019,10 +2019,24 @@ fbq('init','1522584806098175');fbq('track','PageView');</script>
   }
   var O = origem();
 
+  /* De qual botao do site a pessoa saiu para chegar aqui.
+     Nao e UTM de proposito: utm_source diz de que lugar FORA do site ela veio,
+     e usar UTM entre duas paginas nossas apagava justamente isso. Medido antes
+     da correcao: quem entrava na bio pelo instagram chegava aqui como "bio".
+     Guardado na sessao porque o clique no WhatsApp vem muitos segundos depois,
+     e ate la uma ancora pode ter limpado a query da URL. */
+  var VEIO_DE = (function () {
+    var q = new URLSearchParams(location.search).get("de");
+    try {
+      if (q) sessionStorage.setItem("bio8d:de", q);
+      return q || sessionStorage.getItem("bio8d:de") || "";
+    } catch (e) { return q || ""; }
+  })();
+
   function evento(nome, dados) {
     var base = { site_marca: "natua", pagina: "consultas",
       origem_fonte: O.fonte, origem_meio: O.meio, origem_tipo: O.tipo,
-      origem_campanha: O.campanha };
+      origem_campanha: O.campanha, veio_de: VEIO_DE };
     for (var k in (dados || {})) base[k] = dados[k];
     if (window.gtag) window.gtag("event", nome, base);
     (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: nome }, base));

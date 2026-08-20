@@ -760,6 +760,29 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
   .pf__pontos{margin-top:8px}
 }
 </style>
+
+<!-- ═══ MEDICAO ═══
+     Esta pagina era a unica do funil sem nenhuma medicao, e e o destino do
+     card de conversao da bio. Mesma tag dos outros sites, para cair no mesmo
+     relatorio. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GT-PJWWKM65"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', 'GT-PJWWKM65', { site_marca: 'natua', pagina_tipo: 'consultas' });
+</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;
+j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);})
+(window,document,'script','dataLayer','GTM-KM5QW3DB');</script>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1522584806098175');fbq('track','PageView');</script>
 </head>
 <body>
 
@@ -778,7 +801,7 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
       <a href="/#faq">FAQ</a>
       <a href="/blog">Blog</a>
     </nav>
-    <a class="topo__cta" href="https://api.whatsapp.com/send/?phone=41995474511&amp;text=Ol%C3%A1%21+Vim+do+Site+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+o+tratamento.&amp;type=phone_number&amp;app_absent=0" target="_blank" rel="noopener">Agendar Avaliação</a>
+    <a class="topo__cta" href="https://api.whatsapp.com/send/?phone=41995474511&amp;text=Ol%C3%A1%21+Vim+do+Site+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+o+tratamento.&amp;type=phone_number&amp;app_absent=0" target="_blank" rel="noopener">Agendar Consulta</a>
   </div>
 </header>
 
@@ -1679,6 +1702,107 @@ html.js #profissionais .pf__env{position:sticky;top:0;min-height:100vh;
   });
 
   medir();
+})();
+</script>
+
+<script>
+/* ═══ MEDICAO DAS ACOES DA PAGINA ═══
+   Um listener delegado: elemento novo no HTML ja e medido, sem tocar aqui.
+   A origem e resolvida na chegada e guardada na sessao, porque a pessoa vem
+   da bio e o referrer se perde no caminho. */
+(function () {
+  "use strict";
+  var CHAVE = "bio8d:origem";
+
+  function classificarReferrer(ref) {
+    if (!ref) return { fonte: "direto", meio: "nenhum" };
+    var h = "";
+    try { h = new URL(ref).hostname.replace(/^www\./, ""); } catch (e) { return { fonte: "direto", meio: "nenhum" }; }
+    if (/instagram\.com$/.test(h))        return { fonte: "instagram", meio: "social" };
+    if (/(facebook|fb)\.com$/.test(h))    return { fonte: "facebook", meio: "social" };
+    if (/google\./.test(h))               return { fonte: "google", meio: "organico" };
+    if (/(wa\.me|whatsapp)/.test(h))      return { fonte: "whatsapp", meio: "mensagem" };
+    if (/(natuamedspa|medceo)\./.test(h)) return { fonte: "proprio-site", meio: "interno" };
+    return { fonte: h, meio: "referencia" };
+  }
+
+  function origem() {
+    var q = new URLSearchParams(location.search), salvo = null;
+    try { salvo = JSON.parse(sessionStorage.getItem(CHAVE) || "null"); } catch (e) {}
+    var temUtm = q.get("utm_source") || q.get("utm_medium") || q.get("utm_campaign");
+    if (!temUtm && salvo) return salvo;
+    var ref = classificarReferrer(document.referrer);
+    var idClique = q.get("fbclid") || q.get("gclid") || q.get("ttclid") || "";
+    var pago = !!idClique || /cpc|ppc|paid|ads|paga/i.test(q.get("utm_medium") || "");
+    var o = {
+      fonte: q.get("utm_source") || ref.fonte,
+      meio: q.get("utm_medium") || ref.meio,
+      campanha: q.get("utm_campaign") || "",
+      conteudo: q.get("utm_content") || "",
+      tipo: pago ? "pago" : (ref.meio === "organico" ? "organico" : (q.get("utm_source") ? "campanha" : "direto"))
+    };
+    try { sessionStorage.setItem(CHAVE, JSON.stringify(o)); } catch (e) {}
+    return o;
+  }
+  var O = origem();
+
+  function evento(nome, dados) {
+    var base = { site_marca: "natua", pagina: "consultas",
+      origem_fonte: O.fonte, origem_meio: O.meio, origem_tipo: O.tipo,
+      origem_campanha: O.campanha };
+    for (var k in (dados || {})) base[k] = dados[k];
+    if (window.gtag) window.gtag("event", nome, base);
+    (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: nome }, base));
+  }
+
+  evento("consultas_abriu", {});
+
+  /* Quem e o profissional daquele bloco: clique em "garantir horario" sem saber
+     de quem vale pouco. */
+  function profissionalDe(el) {
+    var r = el.getAttribute("data-reserva");
+    if (r) return r;
+    var pai = el.closest("[data-medico],.pf,.cartao,tr,td");
+    if (!pai) return "";
+    var n = pai.querySelector(".pf__nome,.cartao__topo h3,.nome");
+    return n ? n.textContent.trim() : (pai.getAttribute("data-medico") || "");
+  }
+
+  document.addEventListener("click", function (ev) {
+    var a = ev.target.closest("a,button");
+    if (!a) return;
+    var href = a.getAttribute("href") || "";
+    var texto = (a.textContent || "").trim().slice(0, 44);
+
+    if (/wa\.me|whatsapp/.test(href) || a.hasAttribute("data-reserva")) {
+      evento("consultas_whatsapp", {
+        profissional: profissionalDe(a), rotulo: texto,
+        destino: href.slice(0, 90)
+      });
+      return;
+    }
+    if (/^#/.test(href)) { evento("consultas_ancora", { alvo: href, rotulo: texto }); return; }
+    if (/^https?:/.test(href)) { evento("consultas_saida", { destino: href.slice(0, 90), rotulo: texto }); return; }
+    if (a.tagName === "BUTTON") { evento("consultas_botao", { rotulo: texto }); }
+  });
+
+  /* FAQ aberta diz qual duvida trava a decisao. */
+  document.addEventListener("toggle", function (ev) {
+    var d = ev.target;
+    if (d.tagName !== "DETAILS" || !d.open) return;
+    var t = d.querySelector("summary");
+    evento("consultas_faq", { pergunta: t ? t.textContent.trim().slice(0, 70) : "" });
+  }, true);
+
+  /* Profundidade: diz se a pessoa chegou na tabela de valores ou parou antes. */
+  var marcas = [25, 50, 75, 100], vistos = {};
+  window.addEventListener("scroll", function () {
+    var h = document.documentElement;
+    var pct = (h.scrollTop + innerHeight) / h.scrollHeight * 100;
+    marcas.forEach(function (m) {
+      if (pct >= m && !vistos[m]) { vistos[m] = 1; evento("consultas_rolagem", { profundidade: m }); }
+    });
+  }, { passive: true });
 })();
 </script>
 </body>
